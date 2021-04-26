@@ -1,0 +1,26 @@
+
+<div class="cells">
+  <div class="name">{{'PROTOCOL.NAME' | translate}}</div>
+  <div>{{'PROTOCOL.ONE' | translate}}</div>
+  <div>{{'PROTOCOL.TWO' | translate}}</div>
+  <div>{{'PROTOCOL.THREE' | translate}}</div>
+  <div>{{'PROTOCOL.FOUR' | translate}}</div>
+  <div>{{'PROTOCOL.FIVE' | translate}}</div>
+  <div>{{'PROTOCOL.SIX' | translate}}</div>
+  <div class="sum">{{'PROTOCOL.TOTAL' | translate}}</div>
+  <div class="bonus">{{'PROTOCOL.BONUS' | translate}}</div>
+  <div>{{'PROTOCOL.PAIR' | translate}}</div>
+  <div>{{'PROTOCOL.TWO_PAIR' | translate}}</div>
+  <div>{{'PROTOCOL.TRIPS' | translate}}</div>
+  <div>{{'PROTOCOL.FOAK' | translate}}</div>
+  <div>{{'PROTOCOL.FULL_HOUSE' | translate}}</div>
+  <div>{{'PROTOCOL.SMALL_STRAIGHT' | translate}}</div>
+  <div>{{'PROTOCOL.LARGE_STRAIGHT' | translate}}</div>
+  <div>{{'PROTOCOL.CHANCE' | translate}}</div>
+  <div>{{'PROTOCOL.YATZY' | translate}}</div>
+  <div class="sum">{{'PROTOCOL.TOTAL' | translate}}</div>
+</div>
+<ng-container *ngIf="state$ | async as state">
+  <player *ngFor="let player of state.players" [player]="player" (savePoint)="savePoint($event)"></player>
+</ng-container>
+

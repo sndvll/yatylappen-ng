@@ -1,0 +1,20 @@
+<div class="name">{{player?.name | slice : 0 : 2 }}</div>
+
+<point [value]="player?.one" (click)="onOpenAddPointDialog(PointName.ONE)"></point>
+<point [value]="player?.two" (click)="onOpenAddPointDialog(PointName.TWO)"></point>
+<point [value]="player?.three" (click)="onOpenAddPointDialog(PointName.THREE)"></point>
+<point [value]="player?.four" (click)="onOpenAddPointDialog(PointName.FOUR)"></point>
+<point [value]="player?.five" (click)="onOpenAddPointDialog(PointName.FIVE)"></point>
+<point [value]="player?.six" (click)="onOpenAddPointDialog(PointName.SIX)"></point>
+<point [value]="player?.total_top" [isSum]="true"></point>
+<point [value]="player?.bonus" [isBonus]="true"></point>
+<point [value]="player?.pair" (click)="onOpenAddPointDialog(PointName.PAIR)"></point>
+<point [value]="player?.two_pair" (click)="onOpenAddPointDialog(PointName.TWO_PAIR)"></point>
+<point [value]="player?.trips" (click)="onOpenAddPointDialog(PointName.TRIPS)"></point>
+<point [value]="player?.four_of_a_kind" (click)="onOpenAddPointDialog(PointName.FOUR_OF_A_KIND)"></point>
+<point [value]="player?.full_house" (click)="onOpenAddPointDialog(PointName.FULL_HOUSE)"></point>
+<point [value]="player?.small_straight" (click)="onOpenAddPointDialog(PointName.SMALL_STRAIGHT)"></point>
+<point [value]="player?.large_straight" (click)="onOpenAddPointDialog(PointName.LARGE_STRAIGHT)"></point>
+<point [value]="player?.chance" (click)="onOpenAddPointDialog(PointName.CHANCE)"></point>
+<point [value]="player?.yatzy" (click)="onOpenAddPointDialog(PointName.YATZY)"></point>
+<point [value]="player?.total" [isSum]="true"></point>
