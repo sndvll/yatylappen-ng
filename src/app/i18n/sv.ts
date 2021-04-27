@@ -41,10 +41,17 @@ export const LANG_SV = {
     SETTINGS: {
       DARK_MODE: 'Mörkt läge',
       LANGUAGE: 'Språk',
+      LOAD_GAME_ON_LOAD: 'Auto-ladda senaste ej färdigt spelade spel'
     },
     GAME: {
       START_NEW_GAME: 'Starta nytt spel',
-      RESTART: 'Starta',
+      EDIT_POINT: 'Editera poäng',
+      LOAD: 'Ladda sista ej färdigt spelade spel'
+    },
+    BUTTON: {
+      RESTART: 'Starta om',
+      EDIT: 'Editera',
+      LOAD: 'Load'
     }
   },
   LANGUAGES: {

@@ -13,6 +13,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 const MATERIAL_MODULES = [
   MatDialogModule,
@@ -27,6 +28,9 @@ const MATERIAL_MODULES = [
   MatToolbarModule
 ];
 
+const CDK_MODULES = [
+  ClipboardModule
+];
 
 @NgModule({
   imports: [
@@ -34,13 +38,18 @@ const MATERIAL_MODULES = [
     IconsModule,
     ReactiveFormsModule,
     TranslateModule,
-    ...MATERIAL_MODULES
+    ...MATERIAL_MODULES,
+    ...CDK_MODULES
   ],
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [
+    ...COMPONENTS,
+    ...PIPES
+  ],
   exports: [
     IconsModule,
     ...COMPONENTS,
     ...MATERIAL_MODULES,
+    ...CDK_MODULES,
     ...PIPES,
     TranslateModule,
     ReactiveFormsModule

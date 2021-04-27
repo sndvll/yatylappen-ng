@@ -3,13 +3,15 @@ import {Observable} from 'rxjs';
 import {GameState, IGameStore, Player, Point} from '../model';
 import {Store} from '@ngrx/store';
 import {GameActions} from './game.actions';
+import {PersistenceService} from '../persistence';
 
 @Injectable({ providedIn: 'root'})
 export class GameStore {
 
   public state$: Observable<GameState>;
 
-  constructor(public store: Store<IGameStore>) {
+  constructor(public store: Store<IGameStore>,
+              private persistence: PersistenceService) {
     this.state$ = this.store.select(state => state.game);
   }
 
@@ -21,8 +23,25 @@ export class GameStore {
     this.store.dispatch(GameActions.addPoint({point}));
   }
 
+  public loadGame(game: GameState): void {
+    this.store.dispatch(GameActions.loadGame({game}));
+  }
+
   public undo(): void {
     this.store.dispatch(GameActions.undoLatestDispatch());
+  }
+
+  public restart(): void {
+    this.store.dispatch(GameActions.restartGame());
+  }
+
+  public loadLastGame(): void {
+    this.persistence.loadLastGame()
+      .subscribe((game) => {
+        if (!!game) {
+          this.loadGame(game);
+        }
+      });
   }
 
 }

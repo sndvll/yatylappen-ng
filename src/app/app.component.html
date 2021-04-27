@@ -1,11 +1,13 @@
-<mat-sidenav-container>
+<mat-sidenav-container *ngIf="state$ | async as state">
   <mat-sidenav #sidenav mode="push" [(opened)]="openSideNav" style="min-width: 350px">
     <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem">
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <side-nav></side-nav>
+    <side-nav (restartGame)="onRestartGame(); sidenav.close()"
+              (loadLastGame)="onLoadLastGame(); sidenav.close()"
+              ></side-nav>
   </mat-sidenav>
 
   <mat-sidenav-content class="app">
@@ -21,10 +23,10 @@
       <game-protocol class="flex"></game-protocol>
     </div>
     <div class="icons">
-      <button mat-fab color="primary" [disabled]="disableAddPlayerButton | async" (click)="onAddUser()">
+      <button mat-fab color="primary" [disabled]="state.disableAddPlayerButton" (click)="onAddPlayer()">
         <mat-icon>person_add</mat-icon>
       </button>
-      <button mat-fab color="accent" [disabled]="disableUndoButton | async" (click)="undo()">
+      <button mat-fab color="accent" [disabled]="state.disableUndoButton" (click)="undo()">
         <mat-icon>undo</mat-icon>
       </button>
     </div>

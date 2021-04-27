@@ -41,10 +41,17 @@ export const LANG_EN = {
     SETTINGS: {
       DARK_MODE: 'Dark mode',
       LANGUAGE: 'Language',
+      LOAD_GAME_ON_LOAD: 'Auto load last uncompleted game'
     },
     GAME: {
       START_NEW_GAME: 'Start new a game',
-      RESTART: 'Start',
+      EDIT_POINT: 'Edit point',
+      LOAD: 'Load last not completed game'
+    },
+    BUTTON: {
+      RESTART: 'Restart',
+      EDIT: 'Edit',
+      LOAD: 'Load'
     }
   },
   LANGUAGES: {

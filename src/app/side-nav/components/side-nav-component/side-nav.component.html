@@ -10,8 +10,22 @@
   <mat-label>{{'SIDE_NAV.SETTINGS.DARK_MODE' | translate}}</mat-label>
   <mat-slide-toggle [formControl]="darkModeControl"></mat-slide-toggle>
 </section>
+<section>
+  <mat-label>{{'SIDE_NAV.SETTINGS.LOAD_GAME_ON_LOAD' | translate}}</mat-label>
+  <mat-slide-toggle [formControl]="autoLoadSettingControl"></mat-slide-toggle>
+</section>
 <h1>{{'SIDE_NAV.HEADER.GAME' | translate}}</h1>
 <section>
   <mat-label>{{'SIDE_NAV.GAME.START_NEW_GAME' | translate}}</mat-label>
-  <button mat-button color="primary">{{'SIDE_NAV.GAME.RESTART' | translate}}</button>
+  <button mat-button color="primary" (click)="restartGame.emit()">{{'SIDE_NAV.BUTTON.RESTART' | translate}}</button>
 </section>
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.LOAD' | translate}}</mat-label>
+  <button mat-button color="primary" (click)="loadLastGame.emit()">{{'SIDE_NAV.BUTTON.LOAD' | translate}}</button>
+</section>
+<!--
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.EDIT_POINT' | translate}}</mat-label>
+  <button mat-button color="primary">{{'SIDE_NAV.BUTTON.EDIT' | translate}}</button>
+</section>
+-->

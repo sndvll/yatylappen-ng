@@ -95,7 +95,30 @@ export class GameUtils {
       name: PointName.TOTAL,
       value: this.getTotalValue(player)
     });
+
+    player.completed = this.playerCompleted(player);
+
     return player;
+  }
+
+  public static allPlayersCompleted(players: Player[]): boolean {
+    return players
+      .reduce((completed: boolean, player: Player) => player.completed, false);
+  }
+
+  public static playerCompleted(player: Player): boolean {
+    return this.getPlayerPointsAsArray(player)
+      .reduce((completed: boolean, point: Point) => !point.pristine, false);
+  }
+
+  public static getPlayerPointsAsArray(player: Player): Point[] {
+    return Object.keys(player).reduce((points: Point[], key: string) => {
+      const pointName = key as PointName;
+      if (key !== 'name' && key !== 'id' && !!player[pointName]) {
+        points.push(player[pointName] as Point);
+      }
+      return points;
+    }, []);
   }
 
   public static createPoint({playerId, name, value, strike}: {playerId: string, name: PointName, value: number, strike?: boolean}): Point {
@@ -152,10 +175,6 @@ export class GameUtils {
       default:
         return '';
     }
-  }
-
-  public static get DarkMode(): boolean {
-    return JSON.parse(localStorage.getItem('dark-mode') + '');
   }
 }
 

@@ -11,6 +11,7 @@ import {GameProtocolModule} from './game-protocol/game-protocol.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LanguageModule} from './core';
 import {SideNavModule} from './side-nav/side-nav.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,13 @@ import {SideNavModule} from './side-nav/side-nav.module';
     }),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    LanguageModule
+    LanguageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

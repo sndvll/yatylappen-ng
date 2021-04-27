@@ -1,9 +1,8 @@
-import {Component, EventEmitter, HostBinding, OnDestroy, OnInit, Output} from '@angular/core';
-import {GameUtils, LanguageService} from '../../../core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {LanguageService, ThemeService, PersistenceService} from '../../../core';
 import {FormControl} from '@angular/forms';
 import {Subject} from 'rxjs';
-import {take, takeUntil} from 'rxjs/operators';
-import {ThemeService} from '../../../core/theme/theme.service';
+import { takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'side-nav',
@@ -16,12 +15,18 @@ export class SideNavComponent implements OnInit, OnDestroy {
 
   public langControl = new FormControl();
   public darkModeControl = new FormControl();
+  public autoLoadSettingControl = new FormControl();
+  @Output() restartGame = new EventEmitter<void>();
+  @Output() loadLastGame = new EventEmitter<void>();
 
   constructor(private language: LanguageService,
-              private theme: ThemeService) {
+              private theme: ThemeService,
+              private persistence: PersistenceService) {
     this.langControl.patchValue(language.currentLang);
-    this.darkModeControl.patchValue(GameUtils.DarkMode);
-    this.theme.set(GameUtils.DarkMode);
+    this.darkModeControl.patchValue(persistence.darkMode);
+    this.autoLoadSettingControl.patchValue(persistence.autoLoadSetting);
+
+    this.theme.set(persistence.darkMode || false);
   }
 
   ngOnInit(): void {
@@ -35,6 +40,12 @@ export class SideNavComponent implements OnInit, OnDestroy {
       .subscribe(dark => {
         this.theme.set(dark);
       });
+    this.autoLoadSettingControl
+      .valueChanges
+      .pipe(takeUntil(this._onDestroy$))
+      .subscribe(autoLoad => {
+        this.persistence.autoLoadSetting = autoLoad;
+    });
 
   }
 

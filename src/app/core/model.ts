@@ -12,7 +12,7 @@ export enum PointName {
   TWO_PAIR = 'two_pair',
   TRIPS = 'trips',
   FOUR_OF_A_KIND = 'four_of_a_kind',
-  FULL_HOUSE = 'fullhouse',
+  FULL_HOUSE = 'full_house',
   SMALL_STRAIGHT = 'small_straight',
   LARGE_STRAIGHT = 'large_straight',
   CHANCE = 'chance',
@@ -22,24 +22,25 @@ export enum PointName {
 export interface Player {
   name: string;
   id: string;
-  total_top?: Point;
-  total?: Point;
-  one?: Point;
-  two?: Point;
-  three?: Point;
-  four?: Point;
-  five?: Point;
-  six?: Point;
-  bonus?: Point;
-  pair?: Point;
-  two_pair?: Point;
-  trips?: Point;
-  four_of_a_kind?: Point;
-  full_house?: Point;
-  small_straight?: Point;
-  large_straight?: Point;
-  chance?: Point;
-  yatzy?: Point;
+  completed: boolean;
+  [PointName.TOTAL_TOP]?: Point;
+  [PointName.TOTAL]?: Point;
+  [PointName.ONE]?: Point;
+  [PointName.TWO]?: Point;
+  [PointName.THREE]?: Point;
+  [PointName.FOUR]?: Point;
+  [PointName.FIVE]?: Point;
+  [PointName.SIX]?: Point;
+  [PointName.BONUS]?: Point;
+  [PointName.PAIR]?: Point;
+  [PointName.TWO_PAIR]?: Point;
+  [PointName.TRIPS]?: Point;
+  [PointName.FOUR_OF_A_KIND]?: Point;
+  [PointName.FULL_HOUSE]?: Point;
+  [PointName.SMALL_STRAIGHT]?: Point;
+  [PointName.LARGE_STRAIGHT]?: Point;
+  [PointName.CHANCE]?: Point;
+  [PointName.YATZY]?: Point;
 }
 
 export interface Point {
@@ -52,10 +53,14 @@ export interface Point {
 }
 
 export interface GameState {
+  id: string;
+  created: string;
+  lastChanged: string;
   disableUndoButton: boolean;
   disableAddPlayerButton: boolean;
   players: Player[];
   previousStates: GameState[];
+  completed: boolean;
 }
 
 export interface IGameStore {
