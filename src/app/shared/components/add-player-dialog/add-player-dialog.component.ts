@@ -1,13 +1,13 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'add-player-dialog',
   template: `
     <div style="display: flex; flex-direction: column">
       <mat-form-field>
-        <input matInput [placeholder]="'ADD_PLAYER.NAME' | translate" [formControl]="inputControl">
+        <input autocomplete="false" matInput [placeholder]="'ADD_PLAYER.NAME' | translate" [formControl]="inputControl">
       </mat-form-field>
       <button mat-button (click)="onSave()" [disabled]="inputControl.invalid">{{'ADD_PLAYER.SAVE' | translate}}</button>
     </div>

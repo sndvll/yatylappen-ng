@@ -1,17 +1,34 @@
-<div style="display: flex; justify-content: center;">
-  <h2>YatzyLappen</h2>
-  <fa-icon icon="dice"></fa-icon>
-</div>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="push" [(opened)]="openSideNav" style="min-width: 350px">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <side-nav></side-nav>
+  </mat-sidenav>
 
-<div style="display: flex; justify-content: center;">
-  <game-protocol></game-protocol>
-</div>
-<div class="icons">
-  <button mat-fab color="primary" [disabled]="disableAddPlayerButton | async" (click)="onAddUser()">
-    <mat-icon>person_add</mat-icon>
-  </button>
-  <button mat-fab color="accent" [disabled]="disableUndoButton | async" (click)="undo()">
-    <mat-icon>undo</mat-icon>
-  </button>
-</div>
+  <mat-sidenav-content class="app">
+    <mat-toolbar class="flex space-between">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>YatzyLappen<fa-icon icon="dice"></fa-icon></span>
+      <span class="tool-bar-spacer"></span>
+    </mat-toolbar>
+
+    <div class="flex center">
+      <game-protocol class="flex"></game-protocol>
+    </div>
+    <div class="icons">
+      <button mat-fab color="primary" [disabled]="disableAddPlayerButton | async" (click)="onAddUser()">
+        <mat-icon>person_add</mat-icon>
+      </button>
+      <button mat-fab color="accent" [disabled]="disableUndoButton | async" (click)="undo()">
+        <mat-icon>undo</mat-icon>
+      </button>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
 

@@ -32,5 +32,23 @@ export const LANG_EN = {
     YATZY: 'YATZY!!?',
     SMALL_STRAIGHT: 'Strike or 15 points?',
     LARGE_STRAIGHT: 'Strike or 20 points?'
+  },
+  SIDE_NAV: {
+    HEADER: {
+      SETTINGS: 'Settings',
+      GAME: 'Game'
+    },
+    SETTINGS: {
+      DARK_MODE: 'Dark mode',
+      LANGUAGE: 'Language',
+    },
+    GAME: {
+      START_NEW_GAME: 'Start new a game',
+      RESTART: 'Start',
+    }
+  },
+  LANGUAGES: {
+    SWEDISH: 'Swedish',
+    ENGLISH: 'English'
   }
 };

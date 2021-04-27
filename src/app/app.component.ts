@@ -1,26 +1,36 @@
-import {Component, HostBinding} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {GameStore} from './core/store/game.store';
 import { generate } from 'shortid';
 import {MatDialog} from '@angular/material/dialog';
 import {AddPlayerDialogComponent} from './shared/components';
-import {filter, map, take} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {TranslateService} from '@ngx-translate/core';
-import {LANG_SV} from './i18n/sv';
-import {LanguageService} from './core';
+import {filter, map, take, takeUntil} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {ThemeService} from './core/theme/theme.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
-  @HostBinding('class.app') appClass = true;
+  public openSideNav = false;
+
+  private _onDestroy = new Subject<void>();
+
+  @HostBinding('class') className = '';
 
   constructor(private gameStore: GameStore,
               public dialog: MatDialog,
-              private language: LanguageService) {
+              public theme: ThemeService) {
+  }
+
+  ngOnInit(): void {
+    this.theme.dark$
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(dark => {
+        this.className = dark ? 'dark' : 'light';
+      });
   }
 
   public onAddUser(): void {
@@ -44,5 +54,10 @@ export class AppComponent {
 
   public get disableAddPlayerButton(): Observable<boolean> {
     return this.gameStore.state$.pipe(map(state => state.disableAddPlayerButton));
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 }

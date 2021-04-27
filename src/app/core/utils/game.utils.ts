@@ -154,5 +154,8 @@ export class GameUtils {
     }
   }
 
+  public static get DarkMode(): boolean {
+    return JSON.parse(localStorage.getItem('dark-mode') + '');
+  }
 }
 

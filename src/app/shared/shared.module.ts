@@ -10,6 +10,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const MATERIAL_MODULES = [
   MatDialogModule,
@@ -18,7 +21,10 @@ const MATERIAL_MODULES = [
   MatButtonModule,
   MatIconModule,
   MatSelectModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatExpansionModule,
+  MatSlideToggleModule,
+  MatToolbarModule
 ];
 
 
@@ -31,7 +37,14 @@ const MATERIAL_MODULES = [
     ...MATERIAL_MODULES
   ],
   declarations: [...COMPONENTS, ...PIPES],
-  exports: [IconsModule, ...COMPONENTS, ...MATERIAL_MODULES, ...PIPES, TranslateModule]
+  exports: [
+    IconsModule,
+    ...COMPONENTS,
+    ...MATERIAL_MODULES,
+    ...PIPES,
+    TranslateModule,
+    ReactiveFormsModule
+  ]
 })
 export class SharedModule {
 

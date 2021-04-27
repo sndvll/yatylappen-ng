@@ -1,0 +1,8 @@
+@mixin side-nave-theme($background-color, $lighten) {
+  .mat-drawer.mat-drawer-push {
+    background-color: $background-color !important;
+  }
+  .mat-toolbar {
+    background-color: lighten($background-color, $lighten) !important;
+  }
+}

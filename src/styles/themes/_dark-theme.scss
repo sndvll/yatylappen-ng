@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define the application's custom theme
+$primary-dark: mat-palette($mat-deep-purple);
+$accent-dark:  mat-palette($mat-gray, A200, A100, A400);
+$warn-dark: mat-palette($mat-red);
+$custom-background-color: black;
+
+$mat-dark-theme-background: map_merge($mat-dark-theme-background, (background: $custom-background-color));
+
+$dark-theme: mat-dark-theme($primary-dark, $accent-dark, $warn-dark);
+
+@include angular-material-theme($dark-theme);

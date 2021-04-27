@@ -1,0 +1,17 @@
+<h1>{{'SIDE_NAV.HEADER.SETTINGS' | translate}}</h1>
+<mat-form-field appearance="standard">
+  <mat-label>{{'SIDE_NAV.SETTINGS.LANGUAGE' | translate}}</mat-label>
+  <mat-select [formControl]="langControl">
+    <mat-option [value]="'sv'" >{{'LANGUAGES.SWEDISH' | translate}}</mat-option>
+    <mat-option [value]="'en'">{{'LANGUAGES.ENGLISH' | translate}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<section>
+  <mat-label>{{'SIDE_NAV.SETTINGS.DARK_MODE' | translate}}</mat-label>
+  <mat-slide-toggle [formControl]="darkModeControl"></mat-slide-toggle>
+</section>
+<h1>{{'SIDE_NAV.HEADER.GAME' | translate}}</h1>
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.START_NEW_GAME' | translate}}</mat-label>
+  <button mat-button color="primary">{{'SIDE_NAV.GAME.RESTART' | translate}}</button>
+</section>

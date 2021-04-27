@@ -1,0 +1,9 @@
+@import "../../../../styles/mixins";
+
+div, point {
+  @include point;
+}
+
+div.name, div.sum, div.total, div.bonus, point.name, point.sum, point.total, point.bonus, {
+  font-weight: bolder;
+}

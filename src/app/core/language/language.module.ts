@@ -7,4 +7,8 @@ import {LanguageService} from './language.service';
   providers: [LanguageService],
   exports: [TranslateModule]
 })
-export class LanguageModule {}
+export class LanguageModule {
+  constructor(private language: LanguageService) {
+    language.init();
+  }
+}

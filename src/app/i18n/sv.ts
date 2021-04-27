@@ -32,5 +32,23 @@ export const LANG_SV = {
     YATZY: 'YATZY!!?',
     SMALL_STRAIGHT: 'Stryk eller 15 poäng?',
     LARGE_STRAIGHT: 'Stryk eller 20 poäng?'
+  },
+  SIDE_NAV: {
+    HEADER: {
+      SETTINGS: 'Inställningar',
+      GAME: 'Spel'
+    },
+    SETTINGS: {
+      DARK_MODE: 'Mörkt läge',
+      LANGUAGE: 'Språk',
+    },
+    GAME: {
+      START_NEW_GAME: 'Starta nytt spel',
+      RESTART: 'Starta',
+    }
+  },
+  LANGUAGES: {
+    SWEDISH: 'Svenska',
+    ENGLISH: 'Engelska'
   }
 };

@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define the application's custom theme
+$primary: mat-palette($mat-blue-gray);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+
+
+$light-theme: mat-light-theme($primary, $accent, $warn);
+
+
+// Regular (light theme)
+// Include theme styles for Angular Material components
+// and include theme styles for your custom components.
+@include angular-material-theme($light-theme);

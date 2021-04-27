@@ -1,190 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other styles files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import "node_modules/flag-icon-css/sass/flag-icon";
+@import "styles/themes";
 
-$background: lightgray;
-$font-color: lighten(black, 25%);
-$border: lighten(gray, 8%);
-$protocol-bg: white;
-$edit-bg: white;
-$button-color: lightblue;
-$shade: gray;
-$strike: #D61A3C;
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
 
-$select-color: black;
-$select-bg: lighten(lightgray, 10%);
-$select-border: gray;
 
-$valid-bg: lightgreen;
-$strike-bg: lighten($strike, 10%);
+.dark {
+  @include side-nave-theme(black, 10%);
+  @include angular-material-color($dark-theme);
+  @include game-protocol-style(
+      black,
+      white,
+      white,
+      darken(lightgreen, 15%),
+      darken(lightcoral, 10%),
+  );
 
-body {
-  background-color: $background;
 }
-
-.app {
-  text-align: center;
-  padding: 1rem;
-  font-family: 'Poppins', sans-serif;
-  color: $font-color;
-  > h2 {
-    font-family: 'Source Sans Pro', sans-serif;
-  }
-  > .icons {
-    font-size: 1.8rem;
-    margin-top: 1rem;
-    display:flex;
-    justify-content: space-evenly;
-  }
-}
-
-.icon-button {
-  margin-top: 1rem;
-  border-radius: 100%;
-  width: 4rem;
-  height: 4rem;
-  background-color: lighten(gray, 15%);
-  border: 2px solid $border;
-  color: white;
-}
-
-.button {
-  margin-top: 1rem;
-  background: $button-color;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  border: 0;
-  font-weight: 500;
-  border-radius: 2px;
-  box-shadow: 1px 1px 1px $shade;
-  &.strike {
-    background-color: $strike;
-  }
-}
-
-game-protocol {
-  display: flex;
-  border-left: 1px solid $border;
-  border-bottom: 1px solid $border;
-  border-right: 1px solid $border
-}
-
-.players {
-  display: flex;
-  border-right: 2px solid $border;
-  border-top: 1px solid $border;
-  border-bottom: 1px solid $border;
-  background-color: $protocol-bg;
-}
-
-.points {
-  border-left: 2px solid $border;
-  border-top: 1px solid $border;
-  background-color: $protocol-bg;
-  border-bottom: 1px solid $border;
-  width: 100px;
-  font-size: 0.9rem;
-}
-
-.edit-point {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  background-color: $edit-bg;
-  padding: 1rem;
-  border-radius: 5px;
-  width: 87%;
-  top: 25vh;
-  left: 0.5rem;
-  justify-content: space-between;
-  transition: ease-in-out;
-  box-shadow: 1px 2px 5px $shade;
-  > div.header {
-    display: flex;
-    font-size: 1.2rem;
-    justify-content: space-between;
-    > .name {
-      letter-spacing: 5px;
-      font-size: 1.8rem;
-      font-weight: bolder;
-    }
-  }
-  > div.data {
-    width: 100%;
-    > div {
-      &.name {
-        font-weight: bolder;
-        text-align: left;
-        font-size: 1.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.2rem;
-      }
-      padding: 0.5rem;
-      > form {
-        > select {
-          display: marker;
-          width: 70%;
-          padding: .4rem .7rem;
-          font-size: 1rem;
-          color: $select-color;
-          border-radius: .3rem;
-        }
-        > select {
-          background: $select-bg;
-          border: 2px solid $select-border;
-        }
-        > .buttons {
-          margin-top: 1.5rem;
-          display: flex;
-          justify-content: space-between;
-        }
-      }
-    }
-  }
-}
-
-player, .cells {
-  background-color: $protocol-bg;
-  > div,point {
-    display: block;
-    min-width: 30px;
-    padding: 0.4rem;
-    border-left: 1px solid $border;
-    border-right: 1px solid $border;
-    border-top: 1px solid $border;
-    height: 20px;
-  }
-  > div, point {
-    &.pristine {
-      background-color: $protocol-bg !important;
-    }
-    &.valid {
-      background-color: $valid-bg !important;
-    }
-    &.strike {
-      background-color: $strike-bg !important;
-    }
-  }
-  > div.sum, div.name, point.sum, point.name {
-    border-top: 2px solid $border;
-    border-bottom: 1px solid $border;
-  }
-  > div.total, point.total {
-    border-top: 2px solid $border;
-    border-bottom: 2px solid $border;
-  }
-  > div.bonus, point.bonus {
-    border-bottom: 1px solid $border;
-    &.pristine {
-      background-color: $protocol-bg !important;
-    }
-    &.valid {
-      background-color: $valid-bg !important;
-    }
-  }
-  > div.name, div.sum, div.total, div.bonus, point.name, point.sum, point.total, point.bonus, {
-    font-weight: bolder;
-  }
+.light {
+  @include side-nave-theme(white, 5%);
+  @include angular-material-theme($light-theme);
+  @include game-protocol-style(
+      white,
+      lighten(gray, 8%),
+      lighten(black, 25%),
+      lightgreen,
+      lightcoral
+  );
 }
 
 html, body { height: 100%; }
+
+.flex {
+  display: flex;
+  &.column {
+    flex-direction: column;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+  &.center {
+  justify-content: center;
+  }
+}
+
+

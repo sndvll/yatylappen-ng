@@ -1,0 +1,46 @@
+@mixin game-protocol-style($protocol-bg, $border, $font-color, $valid-bg, $strike-bg) {
+  game-protocol {
+    border-left: 1px solid $border;
+    border-bottom: 1px solid $border;
+    border-right: 1px solid $border
+  }
+
+  mat-sidenav-content {
+    color: $font-color;
+  }
+
+  player, #cells {
+    background-color: $protocol-bg;
+    color: $font-color;
+    > div, point {
+      background-color: $protocol-bg;
+      border-left: 1px solid $border;
+      border-right: 1px solid $border;
+      border-top: 1px solid $border;
+      &.valid {
+        background-color:$valid-bg;
+        color: black !important;
+      }
+      &.strike {
+        background-color: $strike-bg;
+        color: black;
+      }
+    }
+    > div.sum, div.name, point.sum, point.name {
+      border-top: 2px solid $border;
+      border-bottom: 1px solid $border;
+    }
+    > div.total, point.total {
+      border-top: 2px solid $border;
+      border-bottom: 2px solid $border;
+    }
+    > div.bonus, point.bonus {
+      border-bottom: 1px solid $border;
+      &.valid {
+        background-color: $valid-bg;
+        color: black !important;
+      }
+    }
+  }
+
+}

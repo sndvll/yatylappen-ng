@@ -6,7 +6,8 @@ import {filter, take} from 'rxjs/operators';
 
 @Component({
   selector: 'player',
-  templateUrl: 'player.component.html'
+  templateUrl: 'player.component.html',
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
 

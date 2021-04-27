@@ -4,7 +4,7 @@ import {GameActions} from './game.actions';
 
 export const initAppState: GameState = {
   players: [
-    {name: 'Emil', id: 'abcde123'}
+    // {name: 'Emil', id: 'abcde123'}
   ],
   previousStates: [],
   disableAddPlayerButton: false,
@@ -17,9 +17,9 @@ const reducer = createReducer(initAppState,
   on(GameActions.addPlayerSucceeded, (state, { players }) =>
     ({...state, players, disableUndoButton: disableUndoButton(state.previousStates.length)})),
   on(GameActions.addPoint, state =>
-    ({...state, previousStates: [...state.previousStates, state], disableAddPlayerButton: true})),
+    ({...state, previousStates: [...state.previousStates, state]})),
   on(GameActions.addPointSucceeded, (state, { players }) =>
-    ({...state, players, disableUndoButton: disableUndoButton(state.previousStates.length)})),
+    ({...state, players, disableUndoButton: disableUndoButton(state.previousStates.length), disableAddPlayerButton: true})),
   on(GameActions.undoLatestDispatchSucceeded, (state, {players, previousStates}) =>
     ({...state, players, previousStates, disableUndoButton: disableUndoButton(previousStates.length), disableAddPlayerButton: players.length !== 0}))
 );

@@ -9,8 +9,8 @@ import { EffectsModule } from '@ngrx/effects';
 import {SharedModule} from './shared/shared.module';
 import {GameProtocolModule} from './game-protocol/game-protocol.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TranslateModule} from '@ngx-translate/core';
 import {LanguageModule} from './core';
+import {SideNavModule} from './side-nav/side-nav.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import {LanguageModule} from './core';
     AppRoutingModule,
     SharedModule,
     GameProtocolModule,
+    SideNavModule,
     StoreModule.forRoot({}, {
       runtimeChecks: {
         strictActionImmutability: true,

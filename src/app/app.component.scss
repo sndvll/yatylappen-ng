@@ -1,0 +1,36 @@
+
+mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-sidenav {
+  padding: 1rem;
+  // background-color: $background;
+}
+
+.tool-bar-spacer {
+  min-width: 40px;
+}
+
+mat-sidenav-content {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  > h2 {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+  > .icons {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    display:flex;
+    justify-content: space-evenly;
+  }
+}
+
+game-protocol {
+  margin-top: 1rem;
+  display: flex;
+}
