@@ -35,9 +35,26 @@ export class GameStore {
     this.store.dispatch(GameActions.restartGame());
   }
 
+  public delete(gameId: string): void {
+    this.store.dispatch(GameActions.deleteGame({gameId}));
+  }
+
   public loadLastGame(): void {
+    console.log('load');
     this.persistence.loadLastGame()
       .subscribe((game) => {
+        console.log(game);
+        if (!!game) {
+          this.loadGame(game);
+        }
+      });
+  }
+
+  public loadGameById(id: string): void {
+    console.log('load');
+    this.persistence.get(id)
+      .subscribe((game) => {
+        console.log(game);
         if (!!game) {
           this.loadGame(game);
         }

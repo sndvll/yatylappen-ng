@@ -5,6 +5,7 @@ import {AddPlayerDialogComponent} from './shared';
 import {filter, take, takeUntil} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {GameState, GameStore, ThemeService, PersistenceService} from './core';
+import {DeleteGameDialogComponent} from './shared/components/delete-game-dialog/delete-game-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -30,14 +31,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.persistence.autoLoadSetting) {
+      this.store.loadLastGame();
+    }
     this.theme.dark$
       .pipe(takeUntil(this._onDestroy))
       .subscribe(dark => {
         this.className = dark ? 'dark' : 'light';
       });
-    if (this.persistence.autoLoadSetting) {
-      this.store.loadLastGame();
-    }
+
   }
 
   public onAddPlayer(): void {
@@ -55,9 +57,25 @@ export class AppComponent implements OnInit, OnDestroy {
     this.store.restart();
   }
 
-  public onLoadLastGame(): void {
-    console.log('here');
-    this.store.loadLastGame();
+  public onLoadGame(id: string): void {
+    this.store.loadGameById(id);
+  }
+
+  public onDeleteSavedGame(id: string): void {
+    console.log('delete', id);
+    const dialogRef = this.dialog.open(DeleteGameDialogComponent, {
+      data: { id }
+    });
+    dialogRef.afterClosed()
+      .pipe(
+        take(1),
+        filter(gameId => !!gameId)
+      )
+      .subscribe(gameId => {
+        this.persistence.deleteGame(gameId);
+        this.store.restart();
+    });
+
   }
 
   public undo(): void {

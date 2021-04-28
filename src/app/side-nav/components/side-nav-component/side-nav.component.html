@@ -1,3 +1,34 @@
+<h1>{{'SIDE_NAV.HEADER.GAME' | translate}}</h1>
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.START_NEW_GAME' | translate}}</mat-label>
+  <button mat-button color="primary" (click)="restartGame.emit()">{{'SIDE_NAV.BUTTON.RESTART' | translate}}</button>
+</section>
+<ng-container *ngIf="savedGames.length">
+  <section>
+    <mat-form-field appearance="standard">
+      <mat-label>{{'SIDE_NAV.GAME.LOAD' | translate}}</mat-label>
+      <mat-select [formControl]="loadSavedGamesControl">
+        <mat-option *ngFor="let game of savedGames" [value]="game.id">
+          {{game?.created | date: 'yyyy-MM-dd HH:mm' }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="load()" [disabled]="loadSavedGamesControl.invalid">{{'SIDE_NAV.BUTTON.LOAD' | translate}}</button>
+  </section>
+
+  <section>
+    <mat-form-field appearance="standard">
+      <mat-label>{{'SIDE_NAV.GAME.DELETE' | translate}}</mat-label>
+      <mat-select [formControl]="deleteSavedGamesControl">
+        <mat-option *ngFor="let game of savedGames" [value]="game.id">
+          {{game?.created | date: 'yyyy-MM-dd HH:mm' }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="delete()" [disabled]="deleteSavedGamesControl.invalid">{{'SIDE_NAV.BUTTON.DELETE' | translate}}</button>
+  </section>
+</ng-container>
+
 <h1>{{'SIDE_NAV.HEADER.SETTINGS' | translate}}</h1>
 <mat-form-field appearance="standard">
   <mat-label>{{'SIDE_NAV.SETTINGS.LANGUAGE' | translate}}</mat-label>
@@ -14,18 +45,3 @@
   <mat-label>{{'SIDE_NAV.SETTINGS.LOAD_GAME_ON_LOAD' | translate}}</mat-label>
   <mat-slide-toggle [formControl]="autoLoadSettingControl"></mat-slide-toggle>
 </section>
-<h1>{{'SIDE_NAV.HEADER.GAME' | translate}}</h1>
-<section>
-  <mat-label>{{'SIDE_NAV.GAME.START_NEW_GAME' | translate}}</mat-label>
-  <button mat-button color="primary" (click)="restartGame.emit()">{{'SIDE_NAV.BUTTON.RESTART' | translate}}</button>
-</section>
-<section>
-  <mat-label>{{'SIDE_NAV.GAME.LOAD' | translate}}</mat-label>
-  <button mat-button color="primary" (click)="loadLastGame.emit()">{{'SIDE_NAV.BUTTON.LOAD' | translate}}</button>
-</section>
-<!--
-<section>
-  <mat-label>{{'SIDE_NAV.GAME.EDIT_POINT' | translate}}</mat-label>
-  <button mat-button color="primary">{{'SIDE_NAV.BUTTON.EDIT' | translate}}</button>
-</section>
--->

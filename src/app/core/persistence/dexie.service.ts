@@ -6,7 +6,7 @@ export class DexieService extends Dexie {
   constructor() {
     super('yatzy-db');
     this.version(1).stores({
-      yatzy: 'id,created,lastChanged'
+      yatzy: 'id,created,lastChanged,completed'
     });
   }
 }

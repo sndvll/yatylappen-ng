@@ -33,6 +33,12 @@ export const LANG_EN = {
     SMALL_STRAIGHT: 'Strike or 15 points?',
     LARGE_STRAIGHT: 'Strike or 20 points?'
   },
+  DELETE_GAME: {
+    ABORT: 'Abort',
+    DELETE: 'Delete',
+    HEADER: 'Delete game',
+    CONTENT: 'Do you really want to delete this game?',
+  },
   SIDE_NAV: {
     HEADER: {
       SETTINGS: 'Settings',
@@ -46,12 +52,14 @@ export const LANG_EN = {
     GAME: {
       START_NEW_GAME: 'Start new a game',
       EDIT_POINT: 'Edit point',
-      LOAD: 'Load last not completed game'
+      LOAD: 'Load last not completed game',
+      DELETE: 'Delete old, unfinished games'
     },
     BUTTON: {
       RESTART: 'Restart',
       EDIT: 'Edit',
-      LOAD: 'Load'
+      LOAD: 'Load',
+      DELETE : 'Delete'
     }
   },
   LANGUAGES: {

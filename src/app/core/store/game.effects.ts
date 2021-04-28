@@ -27,7 +27,7 @@ export class GameEffects {
     withLatestFrom(this.store.select(state => state.game)),
     map(([player, game]) => {
       const state = {...game, players: [...game.players, player]};
-      this.persistence.state = state;
+      this.persistence.save(state);
       return state;
     }),
     switchMap(state => of(GameActions.addPlayerSucceeded(state)))
@@ -46,9 +46,9 @@ export class GameEffects {
       const state: GameState = {
         ...game,
         players,
-        completed: GameUtils.allPlayersCompleted(players)
+        completed: String(GameUtils.allPlayersCompleted(players))
       };
-      this.persistence.state = state;
+      this.persistence.save(state);
       return state;
     }),
     switchMap(state => of(GameActions.addPointSucceeded(state)))
@@ -65,8 +65,17 @@ export class GameEffects {
         previousStates = previousStates.slice(Math.max(previousStates.length - this.CACHE_SIZE, 1));
       }
       const newState: GameState = {...game, players, previousStates};
-      this.persistence.state = newState;
+      this.persistence.save(newState);
       return of(GameActions.undoLatestDispatchSucceeded(newState));
+    })
+  ));
+
+  delete$ = createEffect(() => this.actions$.pipe(
+    ofType(GameActions.deleteGame),
+    map(action => action.gameId),
+    switchMap(gameId => {
+      this.persistence.deleteGame(gameId);
+      return of(GameActions.deleteGameSucceeded());
     })
   ));
 }

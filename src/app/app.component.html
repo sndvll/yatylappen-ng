@@ -6,7 +6,8 @@
       </button>
     </div>
     <side-nav (restartGame)="onRestartGame(); sidenav.close()"
-              (loadLastGame)="onLoadLastGame(); sidenav.close()"
+              (loadGame)="onLoadGame($event); sidenav.close()"
+              (deleteLastSavedGame)="onDeleteSavedGame($event); sidenav.close()"
               ></side-nav>
   </mat-sidenav>
 

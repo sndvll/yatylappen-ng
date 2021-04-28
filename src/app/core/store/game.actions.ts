@@ -10,16 +10,20 @@ export enum GameActionTypes {
   UndoLatestDispatchSucceeded = '[yatzy] undo latest dispatch succeeded',
   RestartGame = '[yatzy] restart game',
   LoadGame = '[yatzy] load game',
+  DeleteGame = '[yatzy] delete game',
+  DeleteGameSucceeded = '[yatzy] delete game succeeded'
 }
 
 const addPlayer = createAction(GameActionTypes.AddPlayerStarted, props<{player: Player}>());
 const addPlayerSucceeded = createAction(GameActionTypes.AddPlayerSucceeded, props<{players: Player[]}>());
 const addPoint = createAction(GameActionTypes.AddPointStarted, props<{point: Point}>());
-const addPointSucceeded = createAction(GameActionTypes.AddPointSucceeded, props<{players: Player[], completed: boolean}>());
+const addPointSucceeded = createAction(GameActionTypes.AddPointSucceeded, props<{players: Player[], completed: string}>());
 const undoLatestDispatch = createAction(GameActionTypes.UndoLatestDispatch);
 const undoLatestDispatchSucceeded = createAction(GameActionTypes.UndoLatestDispatchSucceeded, props<{players: Player[], previousStates: GameState[]}>());
 const restartGame = createAction(GameActionTypes.RestartGame);
 const loadGame = createAction(GameActionTypes.LoadGame, props<{game: GameState}>());
+const deleteGame = createAction(GameActionTypes.DeleteGame, props<{gameId: string}>());
+const deleteGameSucceeded = createAction(GameActionTypes.DeleteGameSucceeded);
 
 export const GameActions = {
   addPlayer,
@@ -29,5 +33,7 @@ export const GameActions = {
   undoLatestDispatch,
   undoLatestDispatchSucceeded,
   restartGame,
-  loadGame
+  loadGame,
+  deleteGame,
+  deleteGameSucceeded
 };

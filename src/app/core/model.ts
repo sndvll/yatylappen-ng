@@ -60,7 +60,7 @@ export interface GameState {
   disableAddPlayerButton: boolean;
   players: Player[];
   previousStates: GameState[];
-  completed: boolean;
+  completed: string;
 }
 
 export interface IGameStore {

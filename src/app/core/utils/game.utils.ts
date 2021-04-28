@@ -107,7 +107,11 @@ export class GameUtils {
   }
 
   public static playerCompleted(player: Player): boolean {
-    return this.getPlayerPointsAsArray(player)
+    const playerPoints = this.getPlayerPointsAsArray(player);
+    if (playerPoints.length < 17) {
+      return false;
+    }
+    return playerPoints
       .reduce((completed: boolean, point: Point) => !point.pristine, false);
   }
 

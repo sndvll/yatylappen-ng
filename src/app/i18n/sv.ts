@@ -33,6 +33,12 @@ export const LANG_SV = {
     SMALL_STRAIGHT: 'Stryk eller 15 poäng?',
     LARGE_STRAIGHT: 'Stryk eller 20 poäng?'
   },
+  DELETE_GAME: {
+    HEADER: 'Ta bort spel',
+    CONTENT: 'Vill du verkligen ta bort ett spel?',
+    ABORT: 'Avbryt',
+    DELETE: 'Ta bort'
+  },
   SIDE_NAV: {
     HEADER: {
       SETTINGS: 'Inställningar',
@@ -46,12 +52,14 @@ export const LANG_SV = {
     GAME: {
       START_NEW_GAME: 'Starta nytt spel',
       EDIT_POINT: 'Editera poäng',
-      LOAD: 'Ladda sista ej färdigt spelade spel'
+      LOAD: 'Ladda sista ej färdigt spelade spel',
+      DELETE: 'Ta bort gamla ej färdigt spelade spel'
     },
     BUTTON: {
       RESTART: 'Starta om',
       EDIT: 'Editera',
-      LOAD: 'Load'
+      LOAD: 'Ladda',
+      DELETE : 'Delete'
     }
   },
   LANGUAGES: {

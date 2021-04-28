@@ -15,7 +15,7 @@ const createInitState = (): GameState => {
     id: generate(),
     created: now.toISOString(),
     lastChanged: now.toISOString(),
-    completed: false
+    completed: 'false'
   });
 };
 
@@ -31,7 +31,11 @@ const reducer = createReducer(createInitState(),
   on(GameActions.undoLatestDispatchSucceeded, (state, {players, previousStates}) =>
     ({...state, players, previousStates, disableUndoButton: disableUndoButton(previousStates.length), disableAddPlayerButton: players.length !== 0})),
   on(GameActions.restartGame, () => ({...createInitState()})),
-  on(GameActions.loadGame, (state, {game}) => ({...game}))
+  on(GameActions.loadGame, (state, {game}) => ({...game})),
+  on(GameActions.deleteGameSucceeded, () => {
+    console.log('deleteGameSucceeded');
+    return {...createInitState()};
+  })
 );
 
 const disableUndoButton = (length: number) => {

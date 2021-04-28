@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {DexieService} from './dexie.service';
 import Dexie from 'dexie';
 import {GameState} from '../model';
-import {from, Observable} from 'rxjs';
-import {map, take} from 'rxjs/operators';
+import {from, Observable, Subject} from 'rxjs';
+import {filter, map, take} from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
@@ -11,16 +11,44 @@ export class PersistenceService{
 
   private table: Dexie.Table<GameState, string>;
 
+  private _sync = new Subject<void>();
+  private _allNotCompleted = new Subject<GameState[]>();
+
   constructor(private dexie: DexieService) {
     this.table = this.dexie.table('yatzy');
+    this._sync.asObservable()
+      .subscribe(() => {
+        this.table.where({completed: 'false'}).toArray()
+          .then(games => this._allNotCompleted.next(games));
+      });
+    this.sync();
+  }
+
+  public sync(): void {
+    this._sync.next();
+  }
+
+  public get(gameId: string): Observable<GameState | undefined> {
+    return from(this.table.get(gameId)).pipe(
+      take(1)
+    );
+  }
+
+  public deleteGame(gameId: string): void {
+    this.table.delete(gameId);
+    this.sync();
+  }
+
+  public allNotCompleted(): Observable<GameState[]>{
+    return this._allNotCompleted.asObservable();
   }
 
   public loadLastGame(): Observable<GameState | undefined> {
     return from(this.table.orderBy('lastChanged')
-      .filter(game => !!game && !game.completed).last());
+      .filter(game => !!game && game.completed === 'false').last());
   }
 
-  public set state(value: GameState) {
+  public save(value: GameState): void {
     this._exists(value.id)
       .subscribe(exists => {
         if (exists) {
@@ -28,6 +56,7 @@ export class PersistenceService{
           return;
         }
         this.table.add(value, value.id);
+        this.sync();
       });
   }
 
