@@ -8,6 +8,8 @@
     <side-nav (restartGame)="onRestartGame(); sidenav.close()"
               (loadGame)="onLoadGame($event); sidenav.close()"
               (deleteLastSavedGame)="onDeleteSavedGame($event); sidenav.close()"
+              (undo)="undo(); sidenav.close()"
+              (addPlayer)="onAddPlayer();  sidenav.close()"
               ></side-nav>
   </mat-sidenav>
 
@@ -17,19 +19,18 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>YatzyLappen<fa-icon icon="dice"></fa-icon></span>
-      <span class="tool-bar-spacer"></span>
+      <div style="min-width: 80px">
+        <button mat-icon-button *ngIf="!state.disableAddPlayerButton" (click)="onAddPlayer()">
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="!state.disableUndoButton" (click)="undo()">
+          <mat-icon>undo</mat-icon>
+        </button>
+      </div>
     </mat-toolbar>
 
     <div class="flex center">
       <game-protocol class="flex"></game-protocol>
-    </div>
-    <div class="icons">
-      <button mat-fab color="primary" [disabled]="state.disableAddPlayerButton" (click)="onAddPlayer()">
-        <mat-icon>person_add</mat-icon>
-      </button>
-      <button mat-fab color="accent" [disabled]="state.disableUndoButton" (click)="undo()">
-        <mat-icon>undo</mat-icon>
-      </button>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

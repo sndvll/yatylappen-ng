@@ -3,6 +3,14 @@
   <mat-label>{{'SIDE_NAV.GAME.START_NEW_GAME' | translate}}</mat-label>
   <button mat-button color="primary" (click)="restartGame.emit()">{{'SIDE_NAV.BUTTON.RESTART' | translate}}</button>
 </section>
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.ADD_PLAYER' | translate}}</mat-label>
+  <button mat-button color="primary" (click)="addPlayer.emit()">{{'SIDE_NAV.BUTTON.ADD_PLAYER' | translate}}</button>
+</section>
+<section>
+  <mat-label>{{'SIDE_NAV.GAME.UNDO' | translate}}</mat-label>
+  <button mat-button color="primary" (click)="undo.emit()">{{'SIDE_NAV.BUTTON.UNDO' | translate}}</button>
+</section>
 <ng-container *ngIf="savedGames.length">
   <section>
     <mat-form-field appearance="standard">

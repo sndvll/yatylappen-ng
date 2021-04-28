@@ -53,13 +53,17 @@ export const LANG_EN = {
       START_NEW_GAME: 'Start new a game',
       EDIT_POINT: 'Edit point',
       LOAD: 'Load last not completed game',
-      DELETE: 'Delete old, unfinished games'
+      DELETE: 'Delete old, unfinished games',
+      ADD_PLAYER: 'Add one or more players',
+      UNDO: 'Undo last action'
     },
     BUTTON: {
       RESTART: 'Restart',
       EDIT: 'Edit',
       LOAD: 'Load',
-      DELETE : 'Delete'
+      DELETE : 'Delete',
+      ADD_PLAYER: 'Add',
+      UNDO: 'Undo'
     }
   },
   LANGUAGES: {

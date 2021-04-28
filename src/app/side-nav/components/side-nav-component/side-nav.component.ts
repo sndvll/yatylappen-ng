@@ -24,6 +24,8 @@ export class SideNavComponent implements OnInit, OnDestroy {
   @Output() restartGame = new EventEmitter<void>();
   @Output() loadGame = new EventEmitter<string>();
   @Output() deleteLastSavedGame = new EventEmitter<string>();
+  @Output() addPlayer = new EventEmitter<void>();
+  @Output() undo = new EventEmitter<void>();
 
   constructor(private language: LanguageService,
               private theme: ThemeService,

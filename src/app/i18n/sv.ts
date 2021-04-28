@@ -53,13 +53,17 @@ export const LANG_SV = {
       START_NEW_GAME: 'Starta nytt spel',
       EDIT_POINT: 'Editera poäng',
       LOAD: 'Ladda sista ej färdigt spelade spel',
-      DELETE: 'Ta bort gamla ej färdigt spelade spel'
+      DELETE: 'Ta bort gamla ej färdigt spelade spel',
+      ADD_PLAYER: 'Lägg till en eller flera spelare',
+      UNDO: 'Ångra senaste åtgärden'
     },
     BUTTON: {
       RESTART: 'Starta om',
       EDIT: 'Editera',
       LOAD: 'Ladda',
-      DELETE : 'Delete'
+      DELETE : 'Delete',
+      ADD_PLAYER: 'Lägg till',
+      UNDO: 'Ångra'
     }
   },
   LANGUAGES: {

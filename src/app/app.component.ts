@@ -49,8 +49,12 @@ export class AppComponent implements OnInit, OnDestroy {
         take(1),
         filter(name => !!name)
       )
-      .subscribe(name =>
-        this.store.addPlayer({name, id: generate(), completed: false}));
+      .subscribe((names: string) => {
+        const players = names.split(',');
+        players.forEach((name: string) => {
+          this.store.addPlayer({name, id: generate(), completed: false});
+        });
+      });
   }
 
   public onRestartGame(): void {
