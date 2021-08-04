@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {COMPONENTS, IconsModule, PIPES} from '../shared';
+import {COMPONENTS, IconsModule} from '../shared';
 import {CommonModule} from '@angular/common';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -42,15 +42,13 @@ const CDK_MODULES = [
     ...CDK_MODULES
   ],
   declarations: [
-    ...COMPONENTS,
-    ...PIPES
+    ...COMPONENTS
   ],
   exports: [
     IconsModule,
     ...COMPONENTS,
     ...MATERIAL_MODULES,
     ...CDK_MODULES,
-    ...PIPES,
     TranslateModule,
     ReactiveFormsModule
   ]

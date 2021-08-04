@@ -6,11 +6,11 @@ import {StoreModule} from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import {SharedModule} from './shared/shared.module';
-import {GameProtocolModule} from './game-protocol/game-protocol.module';
+import {SharedModule} from './shared';
+import {YatzyModule} from './yatzy/';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LanguageModule} from './core';
-import {SideNavModule} from './side-nav/side-nav.module';
+import {SideNavModule} from './side-nav';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    GameProtocolModule,
+    YatzyModule,
     SideNavModule,
     StoreModule.forRoot({}, {
       runtimeChecks: {

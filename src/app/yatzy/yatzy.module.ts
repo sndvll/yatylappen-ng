@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {GameProtocolComponent} from './components/game-protocol.component';
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '../shared';
 import {CommonModule} from '@angular/common';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from '../core/store/game.reducer';
+import {reducers, GameEffects} from '../core';
 import {EffectsModule} from '@ngrx/effects';
-import {GameEffects} from '../core/store/game.effects';
+import {YatzyPageComponent} from './pages/yatzy.page';
 
 @NgModule({
   imports: [
@@ -14,9 +14,15 @@ import {GameEffects} from '../core/store/game.effects';
     StoreModule.forFeature('game', reducers),
     EffectsModule.forFeature([GameEffects]),
   ],
-  declarations: [GameProtocolComponent],
-  exports: [GameProtocolComponent]
+  declarations: [
+    YatzyPageComponent,
+    GameProtocolComponent
+  ],
+  exports: [
+    YatzyPageComponent,
+    GameProtocolComponent
+  ]
 })
-export class GameProtocolModule {
+export class YatzyModule {
 
 }

@@ -32,10 +32,7 @@ const reducer = createReducer(createInitState(),
     ({...state, players, previousStates, disableUndoButton: disableUndoButton(previousStates.length), disableAddPlayerButton: players.length !== 0})),
   on(GameActions.restartGame, () => ({...createInitState()})),
   on(GameActions.loadGame, (state, {game}) => ({...game})),
-  on(GameActions.deleteGameSucceeded, () => {
-    console.log('deleteGameSucceeded');
-    return {...createInitState()};
-  })
+  on(GameActions.deleteGameSucceeded, () => ({...createInitState()}))
 );
 
 const disableUndoButton = (length: number) => {

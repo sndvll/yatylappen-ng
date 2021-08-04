@@ -3,11 +3,11 @@ import {DexieService} from './dexie.service';
 import Dexie from 'dexie';
 import {GameState} from '../model';
 import {from, Observable, Subject} from 'rxjs';
-import {filter, map, take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
-export class PersistenceService{
+export class PersistenceService {
 
   private table: Dexie.Table<GameState, string>;
 

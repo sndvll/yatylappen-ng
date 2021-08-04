@@ -19,6 +19,10 @@ export enum PointName {
   YATZY = 'yatzy'
 }
 
+export enum PointableName {
+
+}
+
 export interface Player {
   name: string;
   id: string;
