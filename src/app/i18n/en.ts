@@ -12,7 +12,7 @@ export const LANG_EN = {
     PAIR: 'Pair',
     TWO_PAIR: 'Two pairs',
     TRIPS: 'Trips',
-    FOAK: 'F.O.A.K',
+    FOUR_OF_A_KIND: 'F.O.A.K',
     FULL_HOUSE: 'Full house',
     SMALL_STRAIGHT: 'Small straight',
     LARGE_STRAIGHT: 'Large straight',

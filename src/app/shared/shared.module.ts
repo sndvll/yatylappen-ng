@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {COMPONENTS, IconsModule} from '../shared';
 import {CommonModule} from '@angular/common';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -14,6 +13,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {IconsModule} from './icons';
+import {COMPONENTS} from './components';
 
 const MATERIAL_MODULES = [
   MatDialogModule,
