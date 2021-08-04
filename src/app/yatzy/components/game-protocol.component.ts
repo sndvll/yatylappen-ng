@@ -1,7 +1,7 @@
-import {Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {GameState, GameStore, Point} from '../../core';
 import {Observable, Subject} from 'rxjs';
-import {ThemeService} from '../../core/theme/theme.service';
+import {ThemeService} from '../../core';
 import {takeUntil} from 'rxjs/operators';
 
 
