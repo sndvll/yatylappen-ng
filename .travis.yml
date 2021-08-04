@@ -1,9 +1,7 @@
 language: node_js
 node_js:
   - "14"
-script:
-  - echo "Deploy!!"
 install:
-  - npm install -g firebase-tools
+  - npm install -g firebase
 after_success:
   - firebase deploy --project yatzy-lappen --token $FIREBASE_TOKEN
