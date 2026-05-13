@@ -13,6 +13,7 @@
       $dark-theme-strike,
   );
 
+  /* Page background */
   html, body, mat-sidenav-content {
     background-color: $dark-theme-bg;
     color: $dark-theme-font;
@@ -22,40 +23,48 @@
     background-color: $dark-theme-bg;
   }
 
-  /* Angular Material overrides for dark mode */
   mat-toolbar {
     background-color: lighten($dark-theme-bg, 10%) !important;
     color: $dark-theme-font !important;
   }
 
-  .mat-drawer {
-    background-color: lighten($dark-theme-bg, 5%) !important;
-    color: $dark-theme-font !important;
-  }
+  /* ── Angular Material MDC CSS custom properties ── */
+  /* Dialog */
+  --mat-dialog-container-color: #{lighten($dark-theme-bg, 8%)};
+  --mat-dialog-subhead-color: #{$dark-theme-font};
+  --mat-dialog-supporting-text-color: #{lighten($dark-theme-font, 20%)};
 
-  .mat-drawer-container {
-    background-color: $dark-theme-bg;
-    color: $dark-theme-font;
-  }
+  /* Select panel */
+  --mat-select-panel-background-color: #{lighten($dark-theme-bg, 10%)};
+  --mat-select-enabled-trigger-text-color: #{$dark-theme-font};
+  --mat-select-enabled-arrow-color: #{$dark-theme-font};
+  --mat-select-placeholder-text-color: #{darken($dark-theme-font, 20%)};
 
-  .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: lighten($dark-theme-bg, 8%);
-  }
+  /* Options */
+  --mat-option-label-text-color: #{$dark-theme-font};
+  --mat-option-hover-state-layer-color: #{rgba(white, 0.08)};
+  --mat-option-focus-state-layer-color: #{rgba(white, 0.12)};
+  --mat-option-selected-state-layer-color: #{rgba(white, 0.16)};
+  --mat-option-selected-state-label-text-color: #{$dark-theme-font};
 
-  .mat-select-value, .mat-select-arrow {
-    color: $dark-theme-font !important;
-  }
+  /* Form field */
+  --mat-form-field-enabled-select-arrow-color: #{$dark-theme-font};
+  --mat-form-field-focus-select-arrow-color: #{$dark-theme-font};
+  --mat-form-field-select-option-text-color: #{$dark-theme-font};
+  --mat-form-field-select-disabled-option-text-color: #{darken($dark-theme-font, 40%)};
+  --mat-form-field-state-layer-color: #{$dark-theme-font};
+  --mat-form-field-enabled-text-color: #{$dark-theme-font};
+  --mat-form-field-placeholder-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-focus-label-text-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-label-text-color: #{darken($dark-theme-font, 10%)};
 
-  .mat-slide-toggle .mat-slide-toggle-label {
-    color: $dark-theme-font;
-  }
+  /* Slide toggle */
+  --mat-slide-toggle-unselected-track-color: #{lighten($dark-theme-bg, 20%)};
+  --mat-slide-toggle-unselected-handle-color: #{lighten($dark-theme-bg, 40%)};
+  --mat-slide-toggle-selected-track-color: #{lighten($dark-theme-bg, 30%)};
 
+  /* General text */
   mat-label, h1, h2, h3, span, p, section {
-    color: $dark-theme-font;
-  }
-
-  .mat-dialog-container {
-    background-color: lighten($dark-theme-bg, 8%);
     color: $dark-theme-font;
   }
 }

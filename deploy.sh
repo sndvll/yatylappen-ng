@@ -39,13 +39,25 @@ esac
 
 echo "→ Bygger $APP för $ENV..."
 
-# Inject version + commit hash
 HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.0.0")
-sed -i "s/VERSION_PLACEHOLDER/$VERSION/" src/environments/environment.prod.ts
+PKG_VERSION=$(node -p "require('./package.json').version" 2>/dev/null || echo "0.0.0")
+# Stage-version får -dev suffix (precis som dashboard)
+if [[ "$ENV" == "stage" ]]; then
+  if [[ "$PKG_VERSION" != *-dev ]]; then
+    DEPLOY_VERSION="${PKG_VERSION}-dev"
+  else
+    DEPLOY_VERSION="$PKG_VERSION"
+  fi
+else
+  DEPLOY_VERSION="$PKG_VERSION"
+fi
+
+# Inject version + commit hash — använd DEPLOY_VERSION för stage-suffix
+sed -i "s/VERSION_PLACEHOLDER/$DEPLOY_VERSION/" src/environments/environment.prod.ts
 sed -i "s/COMMIT_HASH/$HASH/" src/environments/environment.prod.ts
 
-npm run build -- --base-href="$BASE_HREF"
+# Använd production config så environment.prod.ts (med injectade värden) används
+npm run build -- --configuration production --base-href="$BASE_HREF"
 
 DEPLOY_DIR=$(mktemp -d)
 echo "→ Förbereder deploy-katalog: $DEPLOY_DIR"
