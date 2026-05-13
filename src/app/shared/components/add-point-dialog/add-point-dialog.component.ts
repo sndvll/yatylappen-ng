@@ -1,12 +1,17 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {generate} from 'shortid';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {nanoid as generate} from 'nanoid';
 import {GameUtils, PointName} from '../../../core';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl, ReactiveFormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
-  selector: 'add-point-dialog',
-  template: `
+    selector: 'add-point-dialog',
+    template: `
     <h2 mat-dialog-title>{{'ADD_POINT.ADD' | translate }} {{('PROTOCOL.' + pointName | uppercase | translate) | lowercase}} {{'ADD_POINT.FOR'|translate}} {{playerName}}</h2>
     <div mat-dialog-content>
       <ng-container [ngSwitch]="pointName">
@@ -34,6 +39,16 @@ import {FormControl} from '@angular/forms';
       <button mat-button color="primary" [disabled]="disableSaveButton" (click)="onSave()">{{'ADD_POINT.SAVE' | translate}}</button>
     </div>
   `,
+    standalone: true,
+    imports: [
+      CommonModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatButtonModule,
+      ReactiveFormsModule,
+      TranslateModule,
+    ]
 })
 export class AddPointDialogComponent {
 
@@ -42,7 +57,7 @@ export class AddPointDialogComponent {
   private readonly playerId: string;
   public possiblePoints: number[];
   PointName = PointName;
-  public selectControl = new FormControl();
+  public selectControl = new UntypedFormControl();
 
   constructor(
     public dialogRef: MatDialogRef<AddPointDialogComponent>,

@@ -1,23 +1,39 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {LanguageService, ThemeService, PersistenceService, GameState, GameStore} from '../../../core';
-import {FormControl, Validators} from '@angular/forms';
+import {LanguageService, ThemeService, PersistenceService, GameState} from '../../../core';
+import {UntypedFormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import { takeUntil} from 'rxjs/operators';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
-  selector: 'side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss']
+    selector: 'side-nav',
+    templateUrl: './side-nav.component.html',
+    styleUrls: ['./side-nav.component.scss'],
+    standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatButtonModule,
+      MatSlideToggleModule,
+      TranslateModule,
+    ]
 })
 export class SideNavComponent implements OnInit, OnDestroy {
 
   private _onDestroy$ = new Subject<void>();
 
-  public langControl = new FormControl();
-  public darkModeControl = new FormControl();
-  public autoLoadSettingControl = new FormControl();
-  public loadSavedGamesControl = new FormControl(null, [Validators.required]);
-  public deleteSavedGamesControl = new FormControl(null, [Validators.required]);
+  public langControl = new UntypedFormControl();
+  public darkModeControl = new UntypedFormControl();
+  public autoLoadSettingControl = new UntypedFormControl();
+  public loadSavedGamesControl = new UntypedFormControl(null, [Validators.required]);
+  public deleteSavedGamesControl = new UntypedFormControl(null, [Validators.required]);
 
   public savedGames: GameState[] = [];
 

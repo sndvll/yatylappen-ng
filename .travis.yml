@@ -1,9 +1,0 @@
-language: node_js
-node_js:
-  - "14"
-install:
-  - npm install
-  - npm install -g firebase
-after_success:
-  - ng build
-  - firebase deploy --project yatzy-lappen --token $FIREBASE_TOKEN

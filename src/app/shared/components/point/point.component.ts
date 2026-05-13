@@ -2,8 +2,10 @@ import {Component, HostBinding, Input} from '@angular/core';
 import {Point} from '../../../core';
 
 @Component({
-  selector: 'point',
-  template: `{{value?.strike ? '-' : value?.pristine ? '' : value?.value}}`
+    selector: 'point',
+    template: `{{value?.strike ? '-' : value?.pristine ? '' : value?.value}}`,
+    standalone: true,
+    imports: []
 })
 export class PointComponent {
 

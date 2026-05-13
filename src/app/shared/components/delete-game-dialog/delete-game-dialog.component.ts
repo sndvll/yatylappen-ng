@@ -1,9 +1,11 @@
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {Component, Inject} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
-  selector: 'delete-game-dialog',
-  template: `
+    selector: 'delete-game-dialog',
+    template: `
     <h2 matDialogTitle>{{'DELETE_GAME.HEADER' | translate}}</h2>
     <div mat-dialog-content>
       {{'DELETE_GAME.CONTENT' | translate}}
@@ -12,7 +14,13 @@ import {Component, Inject} from '@angular/core';
       <button mat-button color="primary" (click)="dialogRef.close()">{{'DELETE_GAME.ABORT' | translate}}</button>
       <button mat-button color="warn" (click)="dialogRef.close(data.id)">{{'DELETE_GAME.DELETE' | translate}}</button>
     </div>
-  `
+  `,
+    standalone: true,
+    imports: [
+      MatDialogModule,
+      MatButtonModule,
+      TranslateModule,
+    ]
 })
 export class DeleteGameDialogComponent {
 

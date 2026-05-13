@@ -1,60 +1,162 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {GameState, IGameStore, Player, Point} from '../model';
-import {Store} from '@ngrx/store';
-import {GameActions} from './game.actions';
-import {PersistenceService} from '../persistence';
+import { signalStore, withState, withMethods, withHooks, patchState } from '@ngrx/signals';
+import { inject } from '@angular/core';
+import { GameState, Player, Point } from '../model';
+import { PersistenceService } from '../persistence';
+import { GameUtils } from '../utils';
+import { nanoid as generate } from 'nanoid';
 
-@Injectable({ providedIn: 'root'})
-export class GameStore {
+const initState: GameState = (() => {
+  const now = new Date();
+  return {
+    players: [],
+    previousStates: [],
+    disableAddPlayerButton: false,
+    disableUndoButton: true,
+    id: generate(),
+    created: now.toISOString(),
+    lastChanged: now.toISOString(),
+    completed: 'false',
+  };
+})();
 
-  public state$: Observable<GameState>;
+export const GameStore = signalStore(
+  { providedIn: 'root' },
+  withState(initState),
+  withMethods((store, persistence = inject(PersistenceService)) => ({
+    addPlayer(player: Player): void {
+      const current: GameState = {
+        players: store.players(),
+        previousStates: store.previousStates(),
+        disableAddPlayerButton: store.disableAddPlayerButton(),
+        disableUndoButton: store.disableUndoButton(),
+        id: store.id(),
+        created: store.created(),
+        lastChanged: store.lastChanged(),
+        completed: store.completed(),
+      };
+      const newPlayers = [...current.players, player];
+      const newState: GameState = {
+        ...current,
+        players: newPlayers,
+        previousStates: [...current.previousStates, current],
+        disableUndoButton: false,
+      };
+      persistence.save(newState as GameState);
+      patchState(store, newState);
+    },
 
-  constructor(public store: Store<IGameStore>,
-              private persistence: PersistenceService) {
-    this.state$ = this.store.select(state => state.game);
-  }
+    addPoint(point: Point): void {
+      const current: GameState = {
+        players: store.players(),
+        previousStates: store.previousStates(),
+        disableAddPlayerButton: store.disableAddPlayerButton(),
+        disableUndoButton: store.disableUndoButton(),
+        id: store.id(),
+        created: store.created(),
+        lastChanged: store.lastChanged(),
+        completed: store.completed(),
+      };
+      const players = current.players.map(p =>
+        p.id === point.playerId
+          ? GameUtils.sumPoints(GameUtils.setPoint(p, point))
+          : p
+      );
+      const completed = String(GameUtils.allPlayersCompleted(players));
+      const newState: GameState = {
+        ...current,
+        players,
+        previousStates: [...current.previousStates, current],
+        completed,
+        disableUndoButton: false,
+        disableAddPlayerButton: true,
+      };
+      persistence.save(newState as GameState);
+      patchState(store, newState);
+    },
 
-  public addPlayer(player: Player): void {
-    this.store.dispatch(GameActions.addPlayer({player}));
-  }
+    undo(): void {
+      const previousStates = store.previousStates();
+      const current: GameState = {
+        players: store.players(),
+        previousStates,
+        disableAddPlayerButton: store.disableAddPlayerButton(),
+        disableUndoButton: store.disableUndoButton(),
+        id: store.id(),
+        created: store.created(),
+        lastChanged: store.lastChanged(),
+        completed: store.completed(),
+      };
+      const prevStates = [...previousStates];
+      const lastState = prevStates.pop();
+      if (!lastState) return;
+      const newState: GameState = {
+        ...current,
+        players: lastState.players,
+        previousStates: prevStates,
+        disableUndoButton: prevStates.length === 0,
+        disableAddPlayerButton: lastState.players.length !== 0,
+      };
+      persistence.save(newState as GameState);
+      patchState(store, newState);
+    },
 
-  public addPoint(point: Point): void {
-    this.store.dispatch(GameActions.addPoint({point}));
-  }
+    loadGame(game: GameState): void {
+      patchState(store, game);
+    },
 
-  public loadGame(game: GameState): void {
-    this.store.dispatch(GameActions.loadGame({game}));
-  }
+    restartGame(): void {
+      const now = new Date();
+      const newState: GameState = {
+        players: [],
+        previousStates: [],
+        disableAddPlayerButton: false,
+        disableUndoButton: true,
+        id: generate(),
+        created: now.toISOString(),
+        lastChanged: now.toISOString(),
+        completed: 'false',
+      };
+      persistence.save(newState);
+      patchState(store, newState);
+    },
 
-  public undo(): void {
-    this.store.dispatch(GameActions.undoLatestDispatch());
-  }
+    deleteGame(gameId: string): void {
+      persistence.deleteGame(gameId);
+      const now = new Date();
+      patchState(store, {
+        players: [],
+        previousStates: [],
+        disableAddPlayerButton: false,
+        disableUndoButton: true,
+        id: generate(),
+        created: now.toISOString(),
+        lastChanged: now.toISOString(),
+        completed: 'false',
+      });
+    },
 
-  public restart(): void {
-    this.store.dispatch(GameActions.restartGame());
-  }
-
-  public delete(gameId: string): void {
-    this.store.dispatch(GameActions.deleteGame({gameId}));
-  }
-
-  public loadLastGame(): void {
-    this.persistence.loadLastGame()
-      .subscribe((game) => {
-        if (!!game) {
-          this.loadGame(game);
+    loadLastGame(): void {
+      persistence.loadLastGame().subscribe((game) => {
+        if (game) {
+          patchState(store, game);
         }
       });
-  }
+    },
 
-  public loadGameById(id: string): void {
-    this.persistence.get(id)
-      .subscribe((game) => {
-        if (!!game) {
-          this.loadGame(game);
+    loadGameById(id: string): void {
+      persistence.get(id).subscribe((game) => {
+        if (game) {
+          patchState(store, game);
         }
       });
-  }
-
-}
+    },
+  })),
+  withHooks({
+    onInit(store) {
+      const persistence = inject(PersistenceService);
+      if (persistence.autoLoadSetting) {
+        store.loadLastGame();
+      }
+    },
+  })
+);

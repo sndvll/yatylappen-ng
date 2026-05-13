@@ -19,10 +19,6 @@ export enum PointName {
   YATZY = 'yatzy'
 }
 
-export enum PointableName {
-
-}
-
 export interface Player {
   name: string;
   id: string;
@@ -65,8 +61,4 @@ export interface GameState {
   players: Player[];
   previousStates: GameState[];
   completed: string;
-}
-
-export interface IGameStore {
-  game: GameState;
 }

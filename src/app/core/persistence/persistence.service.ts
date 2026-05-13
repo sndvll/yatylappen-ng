@@ -9,7 +9,7 @@ import {map, take} from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class PersistenceService {
 
-  private table: Dexie.Table<GameState, string>;
+  private table: Dexie.Table<any, string>;
 
   private _sync = new Subject<void>();
   private _allNotCompleted = new Subject<GameState[]>();
