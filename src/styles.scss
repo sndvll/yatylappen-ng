@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "styles/themes";
 
+/* ── Theme: Dark ── */
 .dark {
-  @include side-nave-theme($dark-theme-bg, 10%);
+  @include side-nav-theme($dark-theme-bg, 10%);
   @include game-protocol-style(
       $dark-theme-bg,
       $dark-theme-border,
@@ -11,9 +12,57 @@
       $dark-theme-valid,
       $dark-theme-strike,
   );
+
+  html, body, mat-sidenav-content {
+    background-color: $dark-theme-bg;
+    color: $dark-theme-font;
+  }
+
+  mat-sidenav-content {
+    background-color: $dark-theme-bg;
+  }
+
+  /* Angular Material overrides for dark mode */
+  mat-toolbar {
+    background-color: lighten($dark-theme-bg, 10%) !important;
+    color: $dark-theme-font !important;
+  }
+
+  .mat-drawer {
+    background-color: lighten($dark-theme-bg, 5%) !important;
+    color: $dark-theme-font !important;
+  }
+
+  .mat-drawer-container {
+    background-color: $dark-theme-bg;
+    color: $dark-theme-font;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: lighten($dark-theme-bg, 8%);
+  }
+
+  .mat-select-value, .mat-select-arrow {
+    color: $dark-theme-font !important;
+  }
+
+  .mat-slide-toggle .mat-slide-toggle-label {
+    color: $dark-theme-font;
+  }
+
+  mat-label, h1, h2, h3, span, p, section {
+    color: $dark-theme-font;
+  }
+
+  .mat-dialog-container {
+    background-color: lighten($dark-theme-bg, 8%);
+    color: $dark-theme-font;
+  }
 }
+
+/* ── Theme: Light ── */
 .light {
-  @include side-nave-theme(white, 5%);
+  @include side-nav-theme(white, 5%);
   @include game-protocol-style(
       $light-theme-bg,
       $light-theme-border,

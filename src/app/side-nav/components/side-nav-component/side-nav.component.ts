@@ -9,6 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {TranslateModule} from '@ngx-translate/core';
+import {environment} from '../../../../environments/environment';
 
 @Component({
     selector: 'side-nav',
@@ -36,6 +37,9 @@ export class SideNavComponent implements OnInit, OnDestroy {
   public deleteSavedGamesControl = new UntypedFormControl(null, [Validators.required]);
 
   public savedGames: GameState[] = [];
+
+  readonly version = environment.version;
+  readonly commitHash = environment.commitHash;
 
   @Output() restartGame = new EventEmitter<void>();
   @Output() loadGame = new EventEmitter<string>();

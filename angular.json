@@ -35,7 +35,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": []
+            "allowedCommonJsDependencies": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,

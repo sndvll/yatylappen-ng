@@ -1,4 +1,4 @@
-import {Component, HostBinding, OnDestroy, OnInit, inject} from '@angular/core';
+import {Component, OnDestroy, OnInit, inject} from '@angular/core';
 import { nanoid as generate } from 'nanoid';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {AddPlayerDialogComponent} from './shared';
@@ -43,13 +43,13 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _onDestroy = new Subject<void>();
 
-  @HostBinding('class') className = '';
-
   ngOnInit(): void {
+    // Set class on <html> so all elements including overlays can use .dark/.light
+    document.documentElement.className = this.theme.darkMode ? 'dark' : 'light';
     this.theme.dark$
       .pipe(takeUntil(this._onDestroy))
       .subscribe(dark => {
-        this.className = dark ? 'dark' : 'light';
+        document.documentElement.className = dark ? 'dark' : 'light';
       });
   }
 
