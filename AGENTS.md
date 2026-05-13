@@ -66,7 +66,25 @@ npm run build      # ng build
 npm test           # Unit tests (Jest) — pure logic (GameUtils)
 npm run test:all   # Alla tester inklusive Angular-komponenter (kräver Chrome)
 npm run lint       # ng lint (eslint)
-npm run deploy     # ng build && deploy till GitHub Pages
+```
+
+## Deployment
+
+### Stage (svc.orb.local)
+```bash
+./deploy.sh stage
+```
+Bygger med `--configuration production --base-href=/yatzylappen-ng/` och rsynkar till svc.orb.local. Branch guard: stage endast från feature-branches.
+
+### Production (GitHub Pages)
+Automatisk vid merge till `main` via GitHub Actions-workflow:
+1. Bygger med `--configuration production --base-href /`
+2. Kör tester (`npm test`)
+3. Injecterar CalVer-version + commit hash i `environment.prod.ts`
+4. Skapar git-tag + GitHub Release
+5. Deployar till GitHub Pages
+
+För att sätta upp custom domain: lägg CNAME i `public/` eller via repots Settings → Pages.
 
 ## Testing
 
