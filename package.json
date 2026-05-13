@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng build"
+    "deploy": "ng build",
+    "test": "jest --config jest.utils.config.js",
+    "test:all": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
@@ -29,11 +31,23 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
+    "@angular-builders/jest": "^21.0.3",
     "@angular-devkit/build-angular": "^20.3.25",
     "@angular/cli": "^20.3.25",
     "@angular/compiler-cli": "^20.3.21",
-    "@types/jasmine": "~5.1.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
+    "jasmine-core": "^6.2.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "jest-preset-angular": "^16.1.5",
+    "karma": "^6.4.4",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.1",
+    "karma-jasmine": "^5.1.0",
+    "karma-jasmine-html-reporter": "^2.2.0",
+    "puppeteer": "^24.43.1",
+    "ts-jest": "^29.4.9",
     "typescript": "~5.8.3"
   }
 }

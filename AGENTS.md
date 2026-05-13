@@ -63,9 +63,26 @@ src/
 ```bash
 npm start          # ng serve
 npm run build      # ng build
-npm run test       # ng test (Karma)
+npm test           # Unit tests (Jest) — pure logic (GameUtils)
+npm run test:all   # Alla tester inklusive Angular-komponenter (kräver Chrome)
 npm run lint       # ng lint (eslint)
 npm run deploy     # ng build && deploy till GitHub Pages
+
+## Testing
+
+```bash
+npm test           # Snabba unit-tester (Jest, pure logic)
+npm run test:all   # Alla tester (kräver Chrome på maskinen)
+```
+
+| Testfil | Vad den testar | Beroenden |
+|---------|---------------|-----------|
+| `core/utils/game.utils.spec.ts` | Poängräkning, sumPoints, setPoint, completion | Inga (pure TS) |
+| `core/theme/theme.service.spec.ts` | ThemeService toggle, darkMode getter | Angular TestBed |
+| `app.component.spec.ts` | AppComponent smoke test | Angular TestBed |
+
+**GameUtils-testerna** körs med Jest och har inga Angular-beroenden — går snabbt och fungerar i CI utan browser.
+För Angular-komponenttester (`test:all`) krävs ChromeHeadless (eller annan browser).
 ```
 
 ## Framtida arbete
