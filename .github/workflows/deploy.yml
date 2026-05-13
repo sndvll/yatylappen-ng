@@ -37,7 +37,7 @@ jobs:
       - name: Set version
         id: version
         run: |
-          VERSION=$(date +'%Y.%m.%d').${{ github.run_number }}
+          VERSION=$(date +'%Y.%m').${{ github.run_number }}
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
