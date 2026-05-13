@@ -1,6 +1,6 @@
 {
   "name": "yatzylappen-ng",
-  "version": "1.0.1",
+  "version": "2026.05.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

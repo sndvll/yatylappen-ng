@@ -28,7 +28,29 @@
     color: $dark-theme-font !important;
   }
 
-  /* ── Angular Material MDC CSS custom properties ── */
+  /* Form field — filled variant */
+  --mat-form-field-filled-container-color: #{lighten($dark-theme-bg, 10%)};
+  --mat-form-field-filled-input-text-color: #{$dark-theme-font};
+  --mat-form-field-filled-label-text-color: #{darken($dark-theme-font, 15%)};
+  --mat-form-field-filled-caret-color: #{$dark-theme-font};
+  --mat-form-field-filled-hover-label-text-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-filled-focus-label-text-color: #{lighten($dark-theme-font, 15%)};
+  --mat-form-field-filled-disabled-container-color: #{lighten($dark-theme-bg, 5%)};
+  --mat-form-field-filled-disabled-input-text-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-filled-disabled-label-text-color: #{darken($dark-theme-font, 40%)};
+  --mat-form-field-enabled-select-arrow-color: #{$dark-theme-font};
+  --mat-form-field-focus-select-arrow-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-select-option-text-color: #{$dark-theme-font};
+  --mat-form-field-select-disabled-option-text-color: #{darken($dark-theme-font, 40%)};
+  --mat-form-field-state-layer-color: #{$dark-theme-font};
+  --mat-form-field-enabled-text-color: #{$dark-theme-font};
+  --mat-form-field-placeholder-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-focus-label-text-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-label-text-color: #{darken($dark-theme-font, 10%)};
+  --mat-form-field-filled-active-indicator-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-filled-hover-active-indicator-color: #{darken($dark-theme-font, 10%)};
+  --mat-form-field-filled-focus-active-indicator-color: #{lighten($dark-theme-font, 20%)};
+
   /* Dialog */
   --mat-dialog-container-color: #{lighten($dark-theme-bg, 8%)};
   --mat-dialog-subhead-color: #{$dark-theme-font};
@@ -40,23 +62,12 @@
   --mat-select-enabled-arrow-color: #{$dark-theme-font};
   --mat-select-placeholder-text-color: #{darken($dark-theme-font, 20%)};
 
-  /* Options */
+  /* Select options */
   --mat-option-label-text-color: #{$dark-theme-font};
   --mat-option-hover-state-layer-color: #{rgba(white, 0.08)};
   --mat-option-focus-state-layer-color: #{rgba(white, 0.12)};
   --mat-option-selected-state-layer-color: #{rgba(white, 0.16)};
   --mat-option-selected-state-label-text-color: #{$dark-theme-font};
-
-  /* Form field */
-  --mat-form-field-enabled-select-arrow-color: #{$dark-theme-font};
-  --mat-form-field-focus-select-arrow-color: #{$dark-theme-font};
-  --mat-form-field-select-option-text-color: #{$dark-theme-font};
-  --mat-form-field-select-disabled-option-text-color: #{darken($dark-theme-font, 40%)};
-  --mat-form-field-state-layer-color: #{$dark-theme-font};
-  --mat-form-field-enabled-text-color: #{$dark-theme-font};
-  --mat-form-field-placeholder-color: #{darken($dark-theme-font, 30%)};
-  --mat-form-field-focus-label-text-color: #{lighten($dark-theme-font, 10%)};
-  --mat-form-field-label-text-color: #{darken($dark-theme-font, 10%)};
 
   /* Slide toggle */
   --mat-slide-toggle-unselected-track-color: #{lighten($dark-theme-bg, 20%)};
