@@ -10,7 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import {IconsModule} from './shared/icons';
+import {LucideAngularModule} from 'lucide-angular';
 import {SideNavComponent} from './side-nav';
 import {GameProtocolComponent} from './yatzy';
 import {TranslateModule} from '@ngx-translate/core';
@@ -26,7 +26,7 @@ import {TranslateModule} from '@ngx-translate/core';
       MatIconModule,
       MatButtonModule,
       MatDialogModule,
-      IconsModule,
+      LucideAngularModule,
       SideNavComponent,
       GameProtocolComponent,
       TranslateModule,

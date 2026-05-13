@@ -8,7 +8,7 @@ Ett Yatzy-poängräkningsspel byggt i Angular. Håller koll på spelare, poäng 
 - **@ngrx/signals** (migrerat från @ngrx/store + @ngrx/effects)
 - **Angular Material** CDK
 - **@ngx-translate/core** för i18n
-- **@fortawesome/angular-fontawesome** för ikoner (migrerar till lucide-angular)
+- **lucide-angular** för ikoner
 - **Dexie** (IndexedDB wrapper) för persistence
 - **nanoid** (migrerar från shortid)
 
@@ -75,16 +75,16 @@ npm run deploy     # ng build && deploy till GitHub Pages
 - [x] Uppgradera Angular 19 → 20
 - [x] Migrera @ngrx/store → @ngrx/signals signalStore
 - [x] Konvertera alla NgModules → standalone components
-- [ ] Byt Firebase → GitHub Pages deployment
+- [x] Byt Firebase → GitHub Pages deployment
 - [x] Ta bort service worker
-- [ ] Byt ut FontAwesome → Lucide-icons
+- [x] Byt ut FontAwesome → Lucide-icons
 
 ## Konventioner
 
 - **Imports**: Exportera från barrel-filer (`index.ts`) i varje feature-katalog
 - **Prefix**: app (AppComponent), yatzy (YatzyPage), game-protocol, player, point, side-nav, add-player-dialog, add-point-dialog, delete-game-dialog
 - **State**: Centraliserad via signalStore
-- **Icons**: FontAwesome via FaIconLibrary, lägg till nya ikoner i IconsModule
+- **Icons**: Lucide via `<lucide-icon name="...">`, registrera i app.config.ts med `LucideAngularModule.pick()`
 - **i18n**: Svenska som default-språk, keys i SCREAMING_SNAKE_CASE
 - **Namngivning**: Components i `feature/components/`, pages i `feature/pages/`
 - **Filändelser**: `.ts`, `.html`, `.scss` per komponent

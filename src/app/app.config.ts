@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
-import { IconsModule } from './shared/icons';
+import { LucideAngularModule, Dices } from 'lucide-angular';
 import { LanguageModule } from './core';
 
 export const appConfig: ApplicationConfig = {
@@ -9,6 +9,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideRouter([]),
     importProvidersFrom(LanguageModule),
-    importProvidersFrom(IconsModule),
+    importProvidersFrom(LucideAngularModule.pick({ dices: Dices })),
   ]
 };

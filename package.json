@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "deploy": "ng build && firebase deploy"
+    "deploy": "ng build",
   },
   "private": true,
   "dependencies": {
@@ -19,13 +19,10 @@
     "@angular/platform-browser": "^20.3.21",
     "@angular/platform-browser-dynamic": "^20.3.21",
     "@angular/router": "^20.3.21",
-    "@fortawesome/angular-fontawesome": "^1.0.0",
-    "@fortawesome/fontawesome-svg-core": "^6.7.0",
-    "@fortawesome/free-regular-svg-icons": "^6.7.0",
-    "@fortawesome/free-solid-svg-icons": "^6.7.0",
     "@ngrx/signals": "^20.1.0",
     "@ngx-translate/core": "^16.0.0",
     "dexie": "^4.0.0",
+    "lucide-angular": "^1.0.0",
     "nanoid": "^5.1.0",
     "rxjs": "^7.8.0",
     "tslib": "^2.0.0",
