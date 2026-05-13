@@ -6,11 +6,12 @@ import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
-  selector: 'game-protocol',
-  templateUrl: './game-protocol.component.html',
-  styleUrls: [
-    './game-protocol.component.scss'
-  ]
+    selector: 'game-protocol',
+    templateUrl: './game-protocol.component.html',
+    styleUrls: [
+        './game-protocol.component.scss'
+    ],
+    standalone: false
 })
 export class GameProtocolComponent implements OnInit, OnDestroy{
 

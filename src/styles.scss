@@ -1,33 +1,25 @@
-/* You can add global styles to this file, and also import other styles files */
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "styles/themes";
 
-// Import library functions for theme creation.
-@import '~@angular/material/theming';
-
-@include angular-material-theme($light-theme);
-
 .dark {
-  @include side-nave-theme(black, 10%);
-  @include angular-material-color($dark-theme);
+  @include side-nave-theme($dark-theme-bg, 10%);
   @include game-protocol-style(
-      black,
-      white,
-      white,
-      darken(lightgreen, 15%),
-      darken(lightcoral, 10%),
+      $dark-theme-bg,
+      $dark-theme-border,
+      $dark-theme-font,
+      $dark-theme-valid,
+      $dark-theme-strike,
   );
-
 }
 .light {
   @include side-nave-theme(white, 5%);
   @include game-protocol-style(
-      white,
-      lighten(gray, 8%),
-      lighten(black, 25%),
-      lightgreen,
-      lightcoral
+      $light-theme-bg,
+      $light-theme-border,
+      $light-theme-font,
+      $light-theme-valid,
+      $light-theme-strike
   );
 }
 
@@ -45,5 +37,3 @@ html, body { height: 100%; }
   justify-content: center;
   }
 }
-
-

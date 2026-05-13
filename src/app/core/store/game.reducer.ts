@@ -1,7 +1,7 @@
 import {GameState} from '../model';
 import {Action, createReducer, on} from '@ngrx/store';
 import {GameActions} from './game.actions';
-import {generate} from 'shortid';
+import {nanoid as generate} from 'nanoid';
 
 const createInitState = (): GameState => {
   const now = new Date();

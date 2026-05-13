@@ -1,23 +1,24 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {LanguageService, ThemeService, PersistenceService, GameState, GameStore} from '../../../core';
-import {FormControl, Validators} from '@angular/forms';
+import {UntypedFormControl, Validators} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import { takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss']
+    selector: 'side-nav',
+    templateUrl: './side-nav.component.html',
+    styleUrls: ['./side-nav.component.scss'],
+    standalone: false
 })
 export class SideNavComponent implements OnInit, OnDestroy {
 
   private _onDestroy$ = new Subject<void>();
 
-  public langControl = new FormControl();
-  public darkModeControl = new FormControl();
-  public autoLoadSettingControl = new FormControl();
-  public loadSavedGamesControl = new FormControl(null, [Validators.required]);
-  public deleteSavedGamesControl = new FormControl(null, [Validators.required]);
+  public langControl = new UntypedFormControl();
+  public darkModeControl = new UntypedFormControl();
+  public autoLoadSettingControl = new UntypedFormControl();
+  public loadSavedGamesControl = new UntypedFormControl(null, [Validators.required]);
+  public deleteSavedGamesControl = new UntypedFormControl(null, [Validators.required]);
 
   public savedGames: GameState[] = [];
 

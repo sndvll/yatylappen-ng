@@ -1,5 +1,5 @@
 import {Player, Point, PointName} from '../model';
-import {generate} from 'shortid';
+import {nanoid as generate} from 'nanoid';
 
 export class GameUtils {
 

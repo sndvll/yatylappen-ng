@@ -1,5 +1,5 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import { generate } from 'shortid';
+import { nanoid as generate } from 'nanoid';
 import {MatDialog} from '@angular/material/dialog';
 import {AddPlayerDialogComponent} from './shared';
 import {filter, take, takeUntil} from 'rxjs/operators';
@@ -8,9 +8,10 @@ import {GameState, GameStore, ThemeService, PersistenceService} from './core';
 import {DeleteGameDialogComponent} from './shared/components/delete-game-dialog/delete-game-dialog.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit, OnDestroy {
 
