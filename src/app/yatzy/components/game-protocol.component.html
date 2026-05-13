@@ -19,7 +19,6 @@
   <div>{{'PROTOCOL.YATZY' | translate}}</div>
   <div class="sum">{{'PROTOCOL.TOTAL' | translate}}</div>
 </div>
-<ng-container *ngIf="state$ | async as state">
-  <player *ngFor="let player of state.players" [player]="player" (savePoint)="savePoint($event)"></player>
-</ng-container>
-
+@for (player of store.players(); track player.id) {
+  <player [player]="player" (savePoint)="savePoint($event)"></player>
+}

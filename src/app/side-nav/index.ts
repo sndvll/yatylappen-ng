@@ -1,1 +1,1 @@
-export * from './side-nav.module';
+export * from './components/side-nav-component/side-nav.component';

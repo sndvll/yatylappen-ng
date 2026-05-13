@@ -1,14 +1,29 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {LanguageService, ThemeService, PersistenceService, GameState, GameStore} from '../../../core';
-import {UntypedFormControl, Validators} from '@angular/forms';
+import {LanguageService, ThemeService, PersistenceService, GameState} from '../../../core';
+import {UntypedFormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {Observable, Subject} from 'rxjs';
 import { takeUntil} from 'rxjs/operators';
+import {CommonModule} from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
     selector: 'side-nav',
     templateUrl: './side-nav.component.html',
     styleUrls: ['./side-nav.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+      CommonModule,
+      ReactiveFormsModule,
+      MatFormFieldModule,
+      MatSelectModule,
+      MatButtonModule,
+      MatSlideToggleModule,
+      TranslateModule,
+    ]
 })
 export class SideNavComponent implements OnInit, OnDestroy {
 

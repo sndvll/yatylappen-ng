@@ -1,1 +1,2 @@
-export * from './yatzy.module';
+export * from './pages/yatzy.page';
+export * from './components/game-protocol.component';

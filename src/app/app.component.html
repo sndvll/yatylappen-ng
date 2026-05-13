@@ -1,4 +1,4 @@
-<mat-sidenav-container *ngIf="state$ | async as state">
+<mat-sidenav-container>
   <mat-sidenav #sidenav mode="push" [(opened)]="openSideNav" style="min-width: 350px">
     <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem">
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -19,14 +19,20 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>YatzyLappen<fa-icon icon="dice"></fa-icon></span>
-      <div style="min-width: 80px">
-        <button mat-icon-button *ngIf="!state.disableAddPlayerButton" (click)="onAddPlayer()">
-          <mat-icon>person_add</mat-icon>
-        </button>
-        <button mat-icon-button *ngIf="!state.disableUndoButton" (click)="undo()">
-          <mat-icon>undo</mat-icon>
-        </button>
-      </div>
+      @if (store) {
+        <div style="min-width: 80px">
+          @if (!store.disableAddPlayerButton()) {
+            <button mat-icon-button (click)="onAddPlayer()">
+              <mat-icon>person_add</mat-icon>
+            </button>
+          }
+          @if (!store.disableUndoButton()) {
+            <button mat-icon-button (click)="undo()">
+              <mat-icon>undo</mat-icon>
+            </button>
+          }
+        </div>
+      }
     </mat-toolbar>
 
     <div class="flex center">
@@ -34,5 +40,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-

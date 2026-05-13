@@ -4,7 +4,8 @@ import {Point} from '../../../core';
 @Component({
     selector: 'point',
     template: `{{value?.strike ? '-' : value?.pristine ? '' : value?.value}}`,
-    standalone: false
+    standalone: true,
+    imports: []
 })
 export class PointComponent {
 

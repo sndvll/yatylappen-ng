@@ -1,6 +1,10 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {UntypedFormControl, Validators} from '@angular/forms';
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {UntypedFormControl, Validators, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
     selector: 'add-player-dialog',
@@ -12,7 +16,15 @@ import {UntypedFormControl, Validators} from '@angular/forms';
       <button mat-button (click)="onSave()" [disabled]="inputControl.invalid">{{'ADD_PLAYER.SAVE' | translate}}</button>
     </div>
   `,
-    standalone: false
+    standalone: true,
+    imports: [
+      MatDialogModule,
+      MatInputModule,
+      MatFormFieldModule,
+      MatButtonModule,
+      ReactiveFormsModule,
+      TranslateModule,
+    ]
 })
 export class AddPlayerDialogComponent {
 

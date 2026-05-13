@@ -1,9 +1,10 @@
-import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import {GameState, GameStore, Point} from '../../core';
-import {Observable, Subject} from 'rxjs';
+import {Component, HostBinding, OnDestroy, OnInit, inject} from '@angular/core';
+import {GameStore, Point} from '../../core';
+import {Subject} from 'rxjs';
 import {ThemeService} from '../../core';
 import {takeUntil} from 'rxjs/operators';
-
+import {PlayerComponent} from '../../shared';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
     selector: 'game-protocol',
@@ -11,21 +12,20 @@ import {takeUntil} from 'rxjs/operators';
     styleUrls: [
         './game-protocol.component.scss'
     ],
-    standalone: false
+    standalone: true,
+    imports: [
+      PlayerComponent,
+      TranslateModule,
+    ]
 })
 export class GameProtocolComponent implements OnInit, OnDestroy{
+
+  readonly store = inject(GameStore);
+  readonly theme = inject(ThemeService);
 
   @HostBinding('class') className = '';
 
   private _onDestroy = new Subject<void>();
-
-  get state$(): Observable<GameState> {
-    return this.store.state$;
-  }
-
-  constructor(private store: GameStore,
-              public theme: ThemeService) {
-  }
 
   ngOnInit(): void {
     this.theme.dark$

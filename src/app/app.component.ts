@@ -1,19 +1,43 @@
-import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit, inject} from '@angular/core';
 import { nanoid as generate } from 'nanoid';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {AddPlayerDialogComponent} from './shared';
 import {filter, take, takeUntil} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
-import {GameState, GameStore, ThemeService, PersistenceService} from './core';
+import {Subject} from 'rxjs';
+import {GameStore, ThemeService, PersistenceService} from './core';
 import {DeleteGameDialogComponent} from './shared/components/delete-game-dialog/delete-game-dialog.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {IconsModule} from './shared/icons';
+import {SideNavComponent} from './side-nav';
+import {GameProtocolComponent} from './yatzy';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+      MatSidenavModule,
+      MatToolbarModule,
+      MatIconModule,
+      MatButtonModule,
+      MatDialogModule,
+      IconsModule,
+      SideNavComponent,
+      GameProtocolComponent,
+      TranslateModule,
+    ]
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  readonly store = inject(GameStore);
+  readonly dialog = inject(MatDialog);
+  readonly theme = inject(ThemeService);
+  readonly persistence = inject(PersistenceService);
 
   public openSideNav = false;
 
@@ -21,26 +45,12 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostBinding('class') className = '';
 
-  get state$(): Observable<GameState> {
-    return this.store.state$;
-  }
-
-  constructor(private store: GameStore,
-              public dialog: MatDialog,
-              public theme: ThemeService,
-              public persistence: PersistenceService) {
-  }
-
   ngOnInit(): void {
-    if (this.persistence.autoLoadSetting) {
-      this.store.loadLastGame();
-    }
     this.theme.dark$
       .pipe(takeUntil(this._onDestroy))
       .subscribe(dark => {
         this.className = dark ? 'dark' : 'light';
       });
-
   }
 
   public onAddPlayer(): void {
@@ -59,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public onRestartGame(): void {
-    this.store.restart();
+    this.store.restartGame();
   }
 
   public onLoadGame(id: string): void {
@@ -78,7 +88,7 @@ export class AppComponent implements OnInit, OnDestroy {
       )
       .subscribe(gameId => {
         this.persistence.deleteGame(gameId);
-        this.store.restart();
+        this.store.restartGame();
     });
 
   }
