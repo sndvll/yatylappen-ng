@@ -2,8 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import "styles/themes";
 
+/* ── Theme: Dark ── */
 .dark {
-  @include side-nave-theme($dark-theme-bg, 10%);
+  @include side-nav-theme($dark-theme-bg, 10%);
   @include game-protocol-style(
       $dark-theme-bg,
       $dark-theme-border,
@@ -11,9 +12,77 @@
       $dark-theme-valid,
       $dark-theme-strike,
   );
+
+  /* Page background */
+  html, body, mat-sidenav-content {
+    background-color: $dark-theme-bg;
+    color: $dark-theme-font;
+  }
+
+  mat-sidenav-content {
+    background-color: $dark-theme-bg;
+  }
+
+  mat-toolbar {
+    background-color: lighten($dark-theme-bg, 10%) !important;
+    color: $dark-theme-font !important;
+  }
+
+  /* Form field — filled variant */
+  --mat-form-field-filled-container-color: #{lighten($dark-theme-bg, 10%)};
+  --mat-form-field-filled-input-text-color: #{$dark-theme-font};
+  --mat-form-field-filled-label-text-color: #{darken($dark-theme-font, 15%)};
+  --mat-form-field-filled-caret-color: #{$dark-theme-font};
+  --mat-form-field-filled-hover-label-text-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-filled-focus-label-text-color: #{lighten($dark-theme-font, 15%)};
+  --mat-form-field-filled-disabled-container-color: #{lighten($dark-theme-bg, 5%)};
+  --mat-form-field-filled-disabled-input-text-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-filled-disabled-label-text-color: #{darken($dark-theme-font, 40%)};
+  --mat-form-field-enabled-select-arrow-color: #{$dark-theme-font};
+  --mat-form-field-focus-select-arrow-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-select-option-text-color: #{$dark-theme-font};
+  --mat-form-field-select-disabled-option-text-color: #{darken($dark-theme-font, 40%)};
+  --mat-form-field-state-layer-color: #{$dark-theme-font};
+  --mat-form-field-enabled-text-color: #{$dark-theme-font};
+  --mat-form-field-placeholder-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-focus-label-text-color: #{lighten($dark-theme-font, 10%)};
+  --mat-form-field-label-text-color: #{darken($dark-theme-font, 10%)};
+  --mat-form-field-filled-active-indicator-color: #{darken($dark-theme-font, 30%)};
+  --mat-form-field-filled-hover-active-indicator-color: #{darken($dark-theme-font, 10%)};
+  --mat-form-field-filled-focus-active-indicator-color: #{lighten($dark-theme-font, 20%)};
+
+  /* Dialog */
+  --mat-dialog-container-color: #{lighten($dark-theme-bg, 8%)};
+  --mat-dialog-subhead-color: #{$dark-theme-font};
+  --mat-dialog-supporting-text-color: #{lighten($dark-theme-font, 20%)};
+
+  /* Select panel */
+  --mat-select-panel-background-color: #{lighten($dark-theme-bg, 10%)};
+  --mat-select-enabled-trigger-text-color: #{$dark-theme-font};
+  --mat-select-enabled-arrow-color: #{$dark-theme-font};
+  --mat-select-placeholder-text-color: #{darken($dark-theme-font, 20%)};
+
+  /* Select options */
+  --mat-option-label-text-color: #{$dark-theme-font};
+  --mat-option-hover-state-layer-color: #{rgba(white, 0.08)};
+  --mat-option-focus-state-layer-color: #{rgba(white, 0.12)};
+  --mat-option-selected-state-layer-color: #{rgba(white, 0.16)};
+  --mat-option-selected-state-label-text-color: #{$dark-theme-font};
+
+  /* Slide toggle */
+  --mat-slide-toggle-unselected-track-color: #{lighten($dark-theme-bg, 20%)};
+  --mat-slide-toggle-unselected-handle-color: #{lighten($dark-theme-bg, 40%)};
+  --mat-slide-toggle-selected-track-color: #{lighten($dark-theme-bg, 30%)};
+
+  /* General text */
+  mat-label, h1, h2, h3, span, p, section {
+    color: $dark-theme-font;
+  }
 }
+
+/* ── Theme: Light ── */
 .light {
-  @include side-nave-theme(white, 5%);
+  @include side-nav-theme(white, 5%);
   @include game-protocol-style(
       $light-theme-bg,
       $light-theme-border,

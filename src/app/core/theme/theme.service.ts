@@ -7,6 +7,7 @@ export class ThemeService {
 
   private _dark = new BehaviorSubject<boolean>(this.persistence.darkMode || false);
   public dark$ = this._dark.asObservable();
+  public get darkMode(): boolean { return this._dark.value; }
 
   constructor(private persistence: PersistenceService) {
   }

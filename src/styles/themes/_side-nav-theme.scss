@@ -1,4 +1,4 @@
-@mixin side-nave-theme($background-color, $lighten) {
+@mixin side-nav-theme($background-color, $lighten) {
   .mat-drawer.mat-drawer-push {
     background-color: $background-color !important;
   }

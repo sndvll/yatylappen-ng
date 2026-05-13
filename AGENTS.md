@@ -63,9 +63,44 @@ src/
 ```bash
 npm start          # ng serve
 npm run build      # ng build
-npm run test       # ng test (Karma)
+npm test           # Unit tests (Jest) — pure logic (GameUtils)
+npm run test:all   # Alla tester inklusive Angular-komponenter (kräver Chrome)
 npm run lint       # ng lint (eslint)
-npm run deploy     # ng build && deploy till GitHub Pages
+```
+
+## Deployment
+
+### Stage (svc.orb.local)
+```bash
+./deploy.sh stage
+```
+Bygger med `--configuration production --base-href=/yatzylappen-ng/` och rsynkar till svc.orb.local. Branch guard: stage endast från feature-branches.
+
+### Production (GitHub Pages)
+Automatisk vid merge till `main` via GitHub Actions-workflow:
+1. Bygger med `--configuration production --base-href /`
+2. Kör tester (`npm test`)
+3. Injecterar CalVer-version + commit hash i `environment.prod.ts`
+4. Skapar git-tag + GitHub Release
+5. Deployar till GitHub Pages
+
+För att sätta upp custom domain: lägg CNAME i `public/` eller via repots Settings → Pages.
+
+## Testing
+
+```bash
+npm test           # Snabba unit-tester (Jest, pure logic)
+npm run test:all   # Alla tester (kräver Chrome på maskinen)
+```
+
+| Testfil | Vad den testar | Beroenden |
+|---------|---------------|-----------|
+| `core/utils/game.utils.spec.ts` | Poängräkning, sumPoints, setPoint, completion | Inga (pure TS) |
+| `core/theme/theme.service.spec.ts` | ThemeService toggle, darkMode getter | Angular TestBed |
+| `app.component.spec.ts` | AppComponent smoke test | Angular TestBed |
+
+**GameUtils-testerna** körs med Jest och har inga Angular-beroenden — går snabbt och fungerar i CI utan browser.
+För Angular-komponenttester (`test:all`) krävs ChromeHeadless (eller annan browser).
 ```
 
 ## Framtida arbete
